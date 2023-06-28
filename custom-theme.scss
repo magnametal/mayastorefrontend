@@ -1,0 +1,77 @@
+@import './node_modules/@angular/material/theming';
+
+@include mat-core();
+
+$mat-lila: (
+  50: #B489D2,
+  100: #B489D2,
+  200: #B489D2,
+  300: #B489D2,
+  400: #B489D2,
+  500: #B489D2,
+  600: #B489D2,
+  700: #B489D2,
+  800: #B489D2,
+  900: #B489D2,
+  A100: #B489D2,
+  A200: #B489D2,
+  A400: #B489D2,
+  A700: #B489D2,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$mat-purple: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #F9A4CE,
+    300: #B2628A,
+    400: #84395F,
+    500: #14080E,
+    600: #14080E,
+    700: #471C32,
+    800: #14080E,
+    900: #14080E,
+    A100: #84395F,
+    A200: #471C32,
+    A400: #14080E,
+    A700: #471C32,
+    contrast: (
+      50: $black-87-opacity,
+      100: $black-87-opacity,
+      200: $black-87-opacity,
+      300: $black-87-opacity,
+      400: $black-87-opacity,
+      500: white,
+      600: white,
+      700: white,
+      800: $white-87-opacity,
+      900: $white-87-opacity,
+      A100: $black-87-opacity,
+      A200: white,
+      A400: white,
+      A700: white,
+    )
+  );
+
+$custom-theme-primary: mat-palette($mat-purple);
+$custom-theme-accent: mat-palette($mat-lila, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-red);
+
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@include angular-material-theme($custom-theme);

@@ -1,0 +1,85 @@
+.cardProduct {}
+
+.productPic {
+    width: auto;
+    height: 240px;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.categoryDiv {
+    width: 96%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 50px;
+    padding: 4px;
+    margin-top: 10px;
+}
+
+.railproducts {
+    height: 280px;
+    width: 97%;
+    overflow-x: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@media only screen and (max-width: 480px) {
+    .productPic {
+        width: 88vw;
+        height: auto;
+    }
+
+    .categoryDiv {
+        justify-content: center;
+        margin-left: 0;
+        padding: 0;
+    }
+    .railproducts {
+        height: auto;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 10px;
+}
+
+::-webkit-scrollbar-button:vertical:increment {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: #B489D2;
+    -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    width: 50px;
+    background-color: #B489D2;
+    -webkit-border-radius: 3px;
+}
+.categoryTitle{
+    color: #B489D2;
+}
+
+.categoryTitleDark{
+    color: #fff;
+}

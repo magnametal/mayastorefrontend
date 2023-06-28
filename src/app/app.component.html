@@ -1,0 +1,117 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="true" autosize>
+  <mat-drawer #drawer [class]="themeService.darktheme?'example-sidenavBlack':'example-sidenav'" mode="side">
+    <div class="sidenavTitles">
+      <img src="./assets/logo_small.png" class="menuLogoSideNav" alt="logo1">
+      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" color="accent"
+        (click)="drawer.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="sidenavProfile" *ngIf="this.sesionService.userData">
+      <img [src]="getPictureRoute(this.sesionService.userData.img)" class="avatarClass" alt="imageAvatar">
+      {{ this.emailPrivaticy(this.sesionService.userData.email) }}
+      <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">logout</mat-icon>
+        <p class="itemText">Cerrar sesión</p>
+      </div>
+    </div>
+    <div class="sidenavMenu">
+      <div [class]="verifyRoute(router.url, '/inicio')" (click)="drawer.toggle()" routerLink="/inicio">
+        <p class="itemText">Inicio</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/categoria')">
+        <p class="itemText">Franelas</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/categoria')">
+        <p class="itemText">Sweaters</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/categoria')">
+        <p class="itemText">Accesorios</p>
+      </div>
+      <span class="divider"></span>
+      <div [class]="verifyRoute(router.url, '/nosotros')">
+        <p class="itemText">Nosotros</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/contactanos')">
+        <p class="itemText">Contáctanos</p>
+      </div>
+      <span class="divider"></span>
+      <div [class]="verifyRoute(router.url, '/carrito')">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>
+        <p class="itemText">Carrito</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/login')" (click)="drawer.toggle()" routerLink="/login" *ngIf="!sesionService.userData">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person</mat-icon>
+        <p class="itemText">Login</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/registro')" (click)="drawer.toggle()" routerLink="/registro" *ngIf="!sesionService.userData">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person_add</mat-icon>
+        <p class="itemText">Registrarse</p>
+      </div>
+      <div [class]="themeService.darktheme?'switchContainerDark':'switchContainer'">
+        <mat-icon>sunny</mat-icon>
+        <mat-slide-toggle [(ngModel)]="themeService.darktheme" class="toggle"></mat-slide-toggle>
+        <mat-icon>dark_mode</mat-icon>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary" class="toolbarClass">
+      <button mat-icon-button class="example-icon" (click)="drawer.toggle()"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img src="./assets/logo_small.png" class="menuLogo" alt="logo2">
+    </mat-toolbar>
+    <div [class]="themeService.darktheme?'mainContentBlack':'mainContent'">
+      <router-outlet></router-outlet>
+    </div>
+    <div [class]="themeService.darktheme?'footerBlack':'footer'">
+      <div class="footerIconsContainer">
+        <button mat-icon-button aria-label="Example icon-button with menu icon">
+          <img src="./assets/instagram.svg" alt="insta" class="instagramLogo">
+        </button>
+        <button mat-icon-button aria-label="Example icon-button with menu icon">
+          <img src="./assets/email.png" alt="insta2" class="emailLogo">
+        </button>
+      </div>
+      <div class="footerClass2">
+        <img src="./assets/logo_big.png" class="footerLogo" alt="logo3">
+        <div class="footerClass2SubDiv">
+          <div class="footerSection">
+            <div>
+              <p class="itemText2">Inicio</p>
+            </div>
+            <div>
+              <p class="itemText2">Nosotros</p>
+            </div>
+            <div>
+              <p class="itemText2">Contáctanos</p>
+            </div>
+          </div>
+          <div class="footerSection" *ngIf="windowWidth>= 900">
+            <div class="footerContainer">
+              <mat-icon class="footerIcon itemText">shopping_cart</mat-icon>
+              <p class="itemText2">Carrito</p>
+            </div>
+            <div class="footerContainer">
+              <mat-icon class="footerIcon itemText">person</mat-icon>
+              <p class="itemText2">Login</p>
+            </div>
+            <div class="footerContainer">
+              <mat-icon class="footerIcon itemText">person_add</mat-icon>
+              <p class="itemText2">Registrarse</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [class]="windowWidth>= 900?'footerClass3':'footerClass4'">
+        <img src="./assets/shoploc.png" class="footerIcon" alt="logo3"><p class="itemText2">Distrito Capital - Miranda - Venezuela</p>
+      </div>
+      <div class="footerClass4">
+        <p>©2023 Reservados todos los derechos</p>
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

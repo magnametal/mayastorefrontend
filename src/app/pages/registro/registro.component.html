@@ -1,0 +1,28 @@
+<div class="loginMainContent">
+    <div class="loginContainer">
+        <p class="title">Registro</p>
+        <div class="inputsClass">
+            <input type="text" class="inputClass" [(ngModel)]="email" placeholder="Email">
+            <input type="password" class="inputClass" [(ngModel)]="password" placeholder="Clave">
+            <input type="password" class="inputClass" [(ngModel)]="password2"  placeholder="Repetir clave">
+            <div class="inputsClassNumber">
+                <select name="countries" class="inputClassCode" [(ngModel)]="country" *ngIf="countries">
+                    <option *ngFor="let country of countries;" [value]="'+'+country.phonecode">{{country.isoCode+'  +'+country.phonecode}}</option>
+                </select>
+                <input type="number" class="inputClassPhone" [(ngModel)]="phone" placeholder="Teléfono">
+            </div>
+            <div>
+                <mat-checkbox class="checkBoxClass" [(ngModel)]="features">
+                    Acepto recibir novedades y ofertas especiales
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="inputsClass">
+            <button class="inputButton" (click)="register()">Registrarse</button>
+        </div>
+        <div class="linksContainer">
+            <a routerLink="/login"><p>¿Ya tienes cuenta? <strong>Ingresa aquí</strong></p></a>
+        </div>
+    </div>
+    
+</div>
