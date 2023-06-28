@@ -1,0 +1,136 @@
+.carritoContainer{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B489D2;
+    flex-direction: column;
+}
+
+.carritoItem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.carritoTitle{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.mainContentCarrito{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cardProductCarrito{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.productPicCarrito{
+    width: 120px;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+}
+
+.divider{
+    width: 100%;
+    height: 2px;
+    margin: 10px;
+    background-color: #B489D2;
+}
+
+.carritoItemTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+    .carritoContainer {
+        width: 95%;
+    }
+}
+
+.itemContent{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-left: 10px;
+    min-height: 120px;
+    width: 100%;
+}
+
+.itemPrice{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.totalPriceContainer{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.totalPrice{
+    width: 220px;
+    background-color: #B489D2;
+    border-radius: 17px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    padding: 10px;
+}
+
+.inputsClass {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputButton {
+    margin-top: 20px;
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 17px;
+    min-width: 220px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 10px;
+    height: 52px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .totalPrice {
+        width: 100%;
+    }
+    .inputButton{
+        width: 100%;
+    }
+}

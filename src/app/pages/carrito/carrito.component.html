@@ -1,0 +1,39 @@
+<div class="mainContentCarrito">
+    <div class="carritoContainer">
+        <div class="carritoTitle">
+            <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>
+            <p class="itemText">Mi Carrito</p>
+        </div>
+        <span class="divider"></span>
+        <div class="carritoItem" *ngFor="let itemCar of carritoService.carrito">
+            <div class="carritoItemTitle">
+                <h4>{{ itemCar.title }}</h4>
+                <button mat-icon-button color="accent">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="cardProductCarrito">
+                <img class="productPicCarrito" [src]="itemCar.img" alt="">
+                <div class="itemContent">
+                    <p>Cantidad: {{ itemCar.quantity }}</p>
+                    <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>
+                </div>
+            </div>
+            <div class="itemPrice">
+                <h3>
+                    {{ (itemCar.price*itemCar.quantity).toFixed(2) }}$
+                </h3> 
+            </div>
+            <span class="divider"></span>
+        </div>
+        <div class="totalPriceContainer">
+            <div class="totalPrice">
+                <h3>Total</h3>
+                <h3>{{getTotalPrice()}}$</h3>
+            </div>
+        </div>
+        <div class="inputsClass">
+            <button class="inputButton">Concretar Pedido</button>
+        </div>
+    </div>
+</div>

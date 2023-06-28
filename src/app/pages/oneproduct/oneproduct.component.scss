@@ -1,0 +1,155 @@
+.mainContentOneProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B489D2;
+    flex-direction: column;
+    width: 100%;
+}
+.productOneContainer{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px
+}
+.titleOneContainer{
+    width: 100%;
+}
+
+.productDetails{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.galleryContent{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.productPicGalleryItem{
+    height: 400px;
+    --animate-duration: 0.5s;
+}
+
+.detailsContainer{
+    width: 30%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 680px) {
+    .productDetails {
+        flex-direction: column;
+    }
+    .galleryContent{
+        width: 94%
+    }
+    .detailsContainer{
+        width: 94%;
+    }
+}
+
+.textOneProduct{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; 
+}
+
+.inputClassOneProduct {
+    margin-top: 30px;
+    width: 40px;
+    background-color: #B489D2;
+    height: 32px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 3px;
+}
+
+.counter{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.inputButtonAddcar{
+    margin-top: 20px;
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.inputButtonAddcar:hover {
+    background-color: #B489D2;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.inputButtonAddcar:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #B489D2;
+}
+
+.railproductsRecommended {
+    height: 280px;
+    width: 97%;
+    overflow-x: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.productPicRecommended {
+    width: auto;
+    height: 240px;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+    margin: 5px;
+}
+
+@media only screen and (max-width: 680px) {
+    .productPicRecommended {
+        width: 88vw;
+        height: auto;
+    }
+    .railproductsRecommended {
+        height: auto;
+    }
+}
+
+.productsMainItemRecommended{
+    width: 97%;
+}
+
+.mainSubinfo{
+    width: 97%;
+    margin-top: 50px;
+}

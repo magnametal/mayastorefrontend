@@ -1,12 +1,10 @@
-.cardProduct {}
-
 .productPic {
     width: auto;
     height: 240px;
     border: solid 3px;
     border-color: #B489D2;
     border-radius: 7px;
-    margin: 10px;
+    margin-left: 5px;
 }
 
 .categoryDiv {
@@ -45,41 +43,14 @@
     }
 }
 
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-button:start:decrement,
-::-webkit-scrollbar-button:end:increment {
-    display: block;
-    height: 10px;
-}
-
-::-webkit-scrollbar-button:vertical:increment {
-    background-color: #fff;
-}
-
-::-webkit-scrollbar-track-piece {
-    background-color: #fff;
-    -webkit-border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:vertical {
-    height: 50px;
-    background-color: #B489D2;
-    -webkit-border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-    width: 50px;
-    background-color: #B489D2;
-    -webkit-border-radius: 3px;
-}
 .categoryTitle{
     color: #B489D2;
 }
 
 .categoryTitleDark{
     color: #fff;
+}
+
+.productsMainItem{
+    width: 97%;
 }

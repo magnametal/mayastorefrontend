@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { ThemeServiceService } from 'src/app/services/theme-service.service';
+import { ProductsService } from 'src/app/services/products.service';
 moment.locale('es');
 
 @Component({
@@ -12,7 +13,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
-  constructor(public api: ApiService, public themeService: ThemeServiceService) {}
+  constructor(public api: ApiService, public themeService: ThemeServiceService, public productsService: ProductsService) {}
 
   ngOnInit() {
 

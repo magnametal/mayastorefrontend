@@ -1,0 +1,45 @@
+<div class="mainContentOneProduct">
+    <div class="productOneContainer">
+        <div class="titleOneContainer">
+            <h3>{{product.title}}</h3>
+        </div>
+        <div class="productDetails">
+            <div class="galleryContent">
+                <img [class]="animateAction?'productPicGalleryItem animate__animated '+actualAnimation+' animate__faster':'productPicGalleryItem'"
+                    [src]="product.imgs[actualIndex]" alt="">
+                <div>
+                    <button mat-icon-button *ngIf="product.imgs[actualIndex-1]" (click)="volver()">
+                        <mat-icon>navigate_before</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="product.imgs[actualIndex+1]" (click)="siguiente()">
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="detailsContainer">
+                <p class="textOneProduct">detalles del producto detalles del producto detalles del producto detalles del
+                    producto detalles del
+                    producto detalles del producto detalles del producto detalles del producto detalles del producto
+                </p>
+                <h3 class="textOneProduct">{{ product.price }}$</h3>
+                <div class="counter">
+                    <input type="number" (change)="changeQuantity($event)" class="inputClassOneProduct" placeholder="Cantidad" [(ngModel)]="quantity">
+                    <button class="inputButtonAddcar" (click)="addToCar()">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainSubinfo">
+        <div>
+            <h4>Tambien podría interesarte</h4>
+        </div>
+        <div class="productsMainItemRecommended">
+            <div class="railproductsRecommended">
+                <div *ngFor="let product of productService.products[0].products"  [routerLink]="['/producto', product.id]">
+                    <img class="productPicRecommended" [src]="product.img" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

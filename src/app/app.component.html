@@ -7,7 +7,7 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="sidenavProfile" *ngIf="this.sesionService.userData">
+    <div [class]="themeService.darktheme?'sidenavProfileDark':'sidenavProfile'" *ngIf="this.sesionService.userData">
       <img [src]="getPictureRoute(this.sesionService.userData.img)" class="avatarClass" alt="imageAvatar">
       {{ this.emailPrivaticy(this.sesionService.userData.email) }}
       <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData">
@@ -36,7 +36,7 @@
         <p class="itemText">Contáctanos</p>
       </div>
       <span class="divider"></span>
-      <div [class]="verifyRoute(router.url, '/carrito')">
+      <div [class]="verifyRoute(router.url, '/carrito')" (click)="drawer.toggle()" routerLink="/carrito">
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>
         <p class="itemText">Carrito</p>
       </div>
