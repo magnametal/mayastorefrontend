@@ -8,7 +8,7 @@
       </button>
     </div>
     <div [class]="themeService.darktheme?'sidenavProfileDark':'sidenavProfile'" *ngIf="this.sesionService.userData">
-      <img [src]="getPictureRoute(this.sesionService.userData.img)" class="avatarClass" alt="imageAvatar">
+      <img [src]="this.sesionService.userData.img" class="avatarClass" alt="imageAvatar">
       {{ this.emailPrivaticy(this.sesionService.userData.email) }}
       <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData">
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">logout</mat-icon>
@@ -19,14 +19,8 @@
       <div [class]="verifyRoute(router.url, '/inicio')" (click)="drawer.toggle()" routerLink="/inicio">
         <p class="itemText">Inicio</p>
       </div>
-      <div [class]="verifyRoute(router.url, '/categoria')" (click)="drawer.toggle()" routerLink="/categoria/1">
-        <p class="itemText">Franelas</p>
-      </div>
-      <div [class]="verifyRoute(router.url, '/categoria')" (click)="drawer.toggle()" routerLink="/categoria/2">
-        <p class="itemText">Sweaters</p>
-      </div>
-      <div [class]="verifyRoute(router.url, '/categoria')" (click)="drawer.toggle()" routerLink="/categoria/3">
-        <p class="itemText">Accesorios</p>
+      <div *ngFor="let cat of categories;" [class]="verifyRoute(router.url, '/categoria/'+cat.id)" (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" >
+        <p class="itemText">{{cat.title}}</p>
       </div>
       <span class="divider"></span>
       <div [class]="verifyRoute(router.url, '/nosotros')">
@@ -50,7 +44,7 @@
       </div>
       <div [class]="themeService.darktheme?'switchContainerDark':'switchContainer'">
         <mat-icon>sunny</mat-icon>
-        <mat-slide-toggle [(ngModel)]="themeService.darktheme" class="toggle"></mat-slide-toggle>
+        <mat-slide-toggle (change)="toggle($event)" [(ngModel)]="themeService.darktheme" class="toggle"></mat-slide-toggle>
         <mat-icon>dark_mode</mat-icon>
       </div>
     </div>
@@ -62,7 +56,7 @@
         aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <img src="./assets/logo_small.png" class="menuLogo" alt="logo2">
+      <img src="./assets/logo_small.png" class="menuLogo" alt="logo2" routerLink="/inicio">
     </mat-toolbar>
     <div [class]="themeService.darktheme?'mainContentBlack':'mainContent'">
       <router-outlet></router-outlet>

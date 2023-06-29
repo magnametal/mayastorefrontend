@@ -1,20 +1,23 @@
-<div class="mainContentCategory">
+<div class="mainContentCategory" *ngIf="!loaderService.loading">
     <div class="divBack">
         <button mat-icon-button (click)="back()">
             <mat-icon>navigate_before</mat-icon>
             Volver
         </button>
     </div>
-    <div class="categoryTitle">
-        <h3>Accesorios ({{category}})</h3>
+    <div class="categoryTitle" *ngIf="category">
+        <h3>{{ category.title }}</h3>
     </div>
     <div class="categoryItemList">
-        <div class="itemCategoryCard" *ngFor="let prod of productsService.products[0].products;" [routerLink]="['/producto', prod.id]">
-            <div class="divPictureCategoryCover" [style]="'background-image: url('+prod.img+');'">
+        <div class="itemCategoryCard" *ngFor="let prod of products;" [routerLink]="['/producto', prod.id]">
+            <div class="divPictureCategoryCover" [style]="'background-image: url('+prod.images[0]+');'">
             </div>
             <div class="productCategoryItemInfo">
                 <h4>{{prod.price}}$</h4>
             </div>
         </div>
     </div>
+</div>
+<div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
+    <mat-spinner color="accent"></mat-spinner>
 </div>

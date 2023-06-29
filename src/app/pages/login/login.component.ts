@@ -7,6 +7,7 @@ import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/services/loader.service';
 
 moment.locale('es');
 
@@ -23,22 +24,22 @@ export class LoginComponent {
     private alertService: AlertServiceService,
     private locastorageservice: LocalStorageServiceService,
     private sesionService: SessionService,
-    private router: Router
+    private router: Router,
+    public loaderService: LoaderService
   ) {}
   email:any="";
   password:any="";
   ngOnInit() {
 
   }
-  ngAfterViewInit() {
-    console.log(this.sesionService.userData);
-    
+  ngAfterContentInit() {
     if (this.sesionService.userData) {
       this.router.navigate(['inicio']);
     }
   }
   logIn(){
     if (this.email != "" && this.password != "") {
+      this.loaderService.setLoading(true);
       this.api.apiPostRequest(`login`, {
         email: this.email,
         password: this.password
@@ -51,10 +52,12 @@ export class LoginComponent {
             this.reset();
             this.router.navigate(['inicio']);
           }
+          this.loaderService.setLoading(false);
         },
         error: (e: any) => {
           this.alertService.alertMessage('Datos no válidos', 'Error de verificación');
           console.log(e);
+          this.loaderService.setLoading(false);
         },
       });
     }else{

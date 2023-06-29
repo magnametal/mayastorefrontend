@@ -14,7 +14,6 @@
     justify-content: flex-start;
     color: #B489D2;
 }
-
 .categoryItemList{
     width: 70%;
     display: inline-block;
@@ -44,6 +43,12 @@
 
 .productCategoryItemInfo{
     margin: 10px;
+    color: #B489D2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 95%;
+    margin: 5px;
 }
 
 .divPictureCategoryCover{
@@ -52,7 +57,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 7px 7px 0px 0px;
+    border-radius: 4px 4px 0px 0px;
 }
 
 .divBack{

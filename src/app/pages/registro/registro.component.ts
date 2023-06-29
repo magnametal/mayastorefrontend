@@ -7,6 +7,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
 import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 moment.locale('es');
 
@@ -23,7 +24,8 @@ export class RegistroComponent {
     private sesionService: SessionService, 
     private router: Router, 
     private locastorageservice: LocalStorageServiceService,
-    private alertService: AlertServiceService
+    private alertService: AlertServiceService,
+    public loaderService: LoaderService
   ) {}
   countries:any = [];
   country:any = '+58';
@@ -65,9 +67,8 @@ export class RegistroComponent {
     if (this.email != "" && this.password != "" && this.password2 != "" && this.phone != "") {
       if (this.password == this.password2) {
         const index = this.countries.findIndex((pais:any) => '+'+pais.phonecode==this.country);
-        console.log(index, );
-        
         if (index != -1) {
+          this.loaderService.setLoading(true);
           this.api.apiPostRequest(`usuarios`, {
             email: this.email,
             password: this.password,
@@ -84,10 +85,12 @@ export class RegistroComponent {
                 this.reset();
                 this.router.navigate(['inicio']);
               }
+              this.loaderService.setLoading(false);
             },
             error: (e: any) => {
               this.alertService.alertMessage('Error de servidor', 'Error');
               console.log(e);
+              this.loaderService.setLoading(false);
             },
           });
         }else{

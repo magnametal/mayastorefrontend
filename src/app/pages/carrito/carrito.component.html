@@ -1,4 +1,4 @@
-<div class="mainContentCarrito">
+<div class="mainContentCarrito" *ngIf="!loaderService.loading">
     <div class="divBack">
         <button mat-icon-button (click)="back()">
             <mat-icon>navigate_before</mat-icon>
@@ -11,15 +11,15 @@
             <p class="itemText">Mi Carrito</p>
         </div>
         <span class="divider"></span>
-        <div class="carritoItem" *ngFor="let itemCar of carritoService.carrito">
+        <div class="carritoItem" *ngFor="let itemCar of carritoService.carrito; let i = index;">
             <div class="carritoItemTitle">
                 <h4>{{ itemCar.title }}</h4>
-                <button mat-icon-button color="accent">
+                <button mat-icon-button color="accent" (click)="eliminarDeCarrito(i)">
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
             <div class="cardProductCarrito">
-                <img class="productPicCarrito" [src]="itemCar.img" alt="">
+                <img class="productPicCarrito" [src]="itemCar.images[0]" alt="">
                 <div class="itemContent">
                     <p>Cantidad: {{ itemCar.quantity }}</p>
                     <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>
@@ -42,4 +42,7 @@
             <button class="inputButton">Concretar Pedido</button>
         </div>
     </div>
+</div>
+<div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
+    <mat-spinner color="accent"></mat-spinner>
 </div>

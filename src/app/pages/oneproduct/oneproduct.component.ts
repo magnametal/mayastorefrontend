@@ -4,9 +4,11 @@ import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { CarritoServiceService } from 'src/app/services/carrito-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { Location } from '@angular/common';
+import { AlertServiceService } from 'src/app/services/alert-service.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 moment.locale('es');
@@ -18,24 +20,38 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None
 })
 export class OneProductComponent {
-  constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, public productService: ProductsService) { }
-  id: any;
+  constructor(public api: ApiService, public loaderService: LoaderService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, private router: Router, public productService: ProductsService, private alertService: AlertServiceService) { }
   quantity:any=1;
   actualIndex:any = 0;
   animateAction:any = true;
   actualAnimation:any = 'animate__zoomIn'
-  product: any = {
-    id: 1,
-    imgs: ["https://i.ibb.co/Rhp72JW/OGS-KLVR-Banner1-2e16d0ba-fill-380x505-c100.jpg", "https://i.ibb.co/Rhp72JW/OGS-KLVR-Banner1-2e16d0ba-fill-380x505-c100.jpg", "https://i.ibb.co/Rhp72JW/OGS-KLVR-Banner1-2e16d0ba-fill-380x505-c100.jpg"],
-    title: "Camisa completa (M / Negra)",
-    price: 15.50
-  }
+  product:any;
+  recommended:any[]=[];
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
     // SOlicitar a servidor información de producto    
+    this.route.params.subscribe(params => {
+      this.getProductsOneProduct(params.id)
+    });
   }
-  ngAfterViewInit() {
+  ngAfterContentInit() {
 
+  }
+  getProductsOneProduct(id:any){
+    this.loaderService.setLoading(true);
+    this.api.apiGetRequest(`productos/uno/${id}`).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.product = resp.product;
+          this.recommended = resp.recommended;
+        }
+        this.loaderService.setLoading(false);
+      },
+      error: (e: any) => {
+        this.alertService.alertMessage('Error de servidor', 'Error');
+        console.log(e);
+        this.loaderService.setLoading(false);
+      },
+    });
   }
   getPictureRoute(item: any) {
     return environment.URL_IMAGEN + item;
@@ -63,8 +79,15 @@ export class OneProductComponent {
       this.quantity=1;
     }
   }
-  addToCar(){
-
+  addToCar(product:any){
+    if (this.quantity>0) {
+      this.carritoService.addproductoToCar(product, this.quantity);
+    }
+    this.quantity = 1;
+    this.navigate();
+  }
+  navigate() {
+    this.router.navigate(['/carrito'])
   }
   back(): void {
     this.location.back()

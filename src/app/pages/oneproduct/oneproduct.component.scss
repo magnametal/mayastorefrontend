@@ -36,7 +36,7 @@
 }
 
 .productPicGalleryItem{
-    height: 400px;
+    max-width: 100%;
     --animate-duration: 0.5s;
 }
 
@@ -170,3 +170,4 @@
     align-items: center;
     justify-content: flex-start;
 }
+
