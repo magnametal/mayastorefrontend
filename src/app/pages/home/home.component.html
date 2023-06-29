@@ -1,10 +1,13 @@
-<div class="mainContent">
-    <div *ngFor="let category of productsService.products" class="productsMainItem">
-        <div class="railproducts">
-            <div class="cardProduct" *ngFor="let product of category.products"  [routerLink]="['/producto', product.id]">
-                <img class="productPic" [src]="product.img" alt="">
+<div class="mainContentHome">
+    <div class="homeConteiner">
+        <div *ngFor="let category of productsService.products" class="productsMainItem">
+            <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'" [routerLink]="['/categoria', category.category]"><h4>{{ category.title }}</h4></div>
+            <div class="railproducts">
+                <div class="cardProduct" *ngFor="let product of category.products" [routerLink]="['/producto', product.id]">
+                    <img class="productPic" [src]="product.img" alt="">
+                </div>
             </div>
         </div>
-        <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'"><h4>{{ category.title }}</h4></div>
     </div>
+    
 </div>

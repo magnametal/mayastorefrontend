@@ -5,6 +5,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
+import { CategoriaComponent } from './pages/categoria/categoria.component';
+
 
 
 const routes: Routes = [
@@ -32,6 +34,10 @@ const routes: Routes = [
   {
     path: 'producto/:id',
     component: OneProductComponent,
+  },
+  {
+    path: 'categoria/:category',
+    component: CategoriaComponent,
   },
 ];
 

@@ -10,7 +10,7 @@
     width: 70%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     margin-top: 10px
 }
@@ -128,11 +128,25 @@
 
 .productPicRecommended {
     width: auto;
-    height: 240px;
+    height: 235px;
     border: solid 3px;
     border-color: #B489D2;
     border-radius: 7px;
-    margin: 5px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.productsMainItemRecommended{
+    width: 70%;
+}
+
+.mainSubinfo{
+    width: 97%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 @media only screen and (max-width: 680px) {
@@ -142,14 +156,17 @@
     }
     .railproductsRecommended {
         height: auto;
+        width: 100%;
+    }
+    .productsMainItemRecommended{
+        width: 97%;
+        padding: 10px;
     }
 }
 
-.productsMainItemRecommended{
-    width: 97%;
-}
-
-.mainSubinfo{
-    width: 97%;
-    margin-top: 50px;
+.divBack{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

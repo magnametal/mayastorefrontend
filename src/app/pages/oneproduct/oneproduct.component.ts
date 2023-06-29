@@ -6,6 +6,7 @@ import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { CarritoServiceService } from 'src/app/services/carrito-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import { Location } from '@angular/common';
 
 
 moment.locale('es');
@@ -17,7 +18,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None
 })
 export class OneProductComponent {
-  constructor(public api: ApiService, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, public productService: ProductsService) { }
+  constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, public productService: ProductsService) { }
   id: any;
   quantity:any=1;
   actualIndex:any = 0;
@@ -64,5 +65,8 @@ export class OneProductComponent {
   }
   addToCar(){
 
+  }
+  back(): void {
+    this.location.back()
   }
 }

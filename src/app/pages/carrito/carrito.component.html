@@ -1,4 +1,10 @@
 <div class="mainContentCarrito">
+    <div class="divBack">
+        <button mat-icon-button (click)="back()">
+            <mat-icon>navigate_before</mat-icon>
+            Volver
+        </button>
+    </div>
     <div class="carritoContainer">
         <div class="carritoTitle">
             <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>

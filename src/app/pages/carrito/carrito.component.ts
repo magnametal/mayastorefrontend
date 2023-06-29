@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { CarritoServiceService } from 'src/app/services/carrito-service.service';
+import { Location } from '@angular/common';
 moment.locale('es');
 
 @Component({
@@ -13,7 +14,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None,
 })
 export class CarritoComponent {
-  constructor(public api: ApiService, public themeService: ThemeServiceService, public carritoService: CarritoServiceService) {}
+  constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService) {}
 
   ngOnInit() {
 
@@ -30,5 +31,8 @@ export class CarritoComponent {
       totalPrice = totalPrice + (item.price*item.quantity)
     })
     return totalPrice.toFixed(2);
+  }
+  back(): void {
+    this.location.back()
   }
 }

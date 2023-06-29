@@ -10,6 +10,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { AlertContent } from './components/alert-dialog-content/alert-dialog-content';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
+import { CategoriaComponent } from './pages/categoria/categoria.component';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     AlertContent,
     CarritoComponent,
     RegistroComponent,
-    OneProductComponent
+    OneProductComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,

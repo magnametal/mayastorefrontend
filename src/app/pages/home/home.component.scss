@@ -1,3 +1,14 @@
+.mainContentHome{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeConteiner{
+    width: 70%;
+}
+
 .productPic {
     width: auto;
     height: 240px;
@@ -5,6 +16,7 @@
     border-color: #B489D2;
     border-radius: 7px;
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .categoryDiv {
@@ -16,6 +28,7 @@
     padding-left: 50px;
     padding: 4px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .railproducts {
@@ -28,8 +41,11 @@
 }
 
 @media only screen and (max-width: 480px) {
+    .homeConteiner{
+        width: 100%;
+    }
     .productPic {
-        width: 88vw;
+        width: 90vw;
         height: auto;
     }
 
@@ -40,6 +56,7 @@
     }
     .railproducts {
         height: auto;
+        width: 100%;
     }
 }
 
@@ -54,3 +71,4 @@
 .productsMainItem{
     width: 97%;
 }
+

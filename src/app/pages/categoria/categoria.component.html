@@ -1,0 +1,20 @@
+<div class="mainContentCategory">
+    <div class="divBack">
+        <button mat-icon-button (click)="back()">
+            <mat-icon>navigate_before</mat-icon>
+            Volver
+        </button>
+    </div>
+    <div class="categoryTitle">
+        <h3>Accesorios ({{category}})</h3>
+    </div>
+    <div class="categoryItemList">
+        <div class="itemCategoryCard" *ngFor="let prod of productsService.products[0].products;" [routerLink]="['/producto', prod.id]">
+            <div class="divPictureCategoryCover" [style]="'background-image: url('+prod.img+');'">
+            </div>
+            <div class="productCategoryItemInfo">
+                <h4>{{prod.price}}$</h4>
+            </div>
+        </div>
+    </div>
+</div>
