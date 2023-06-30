@@ -6,7 +6,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
-
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 const routes: Routes = [
@@ -39,10 +39,14 @@ const routes: Routes = [
     path: 'categoria/:category',
     component: CategoriaComponent,
   },
+  {
+    path: 'admin',
+    component: AdminComponent,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

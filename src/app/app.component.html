@@ -16,8 +16,11 @@
       </div>
     </div>
     <div class="sidenavMenu">
-      <div [class]="verifyRoute(router.url, '/inicio')" (click)="drawer.toggle()" routerLink="/inicio">
+      <div [class]="verifyRoute(router.url, '/inicio')" (click)="drawer.toggle();" routerLink="/inicio">
         <p class="itemText">Inicio</p>
+      </div>
+      <div *ngIf="verifyAdmin()" [class]="verifyRoute(router.url, '/admin')" (click)="drawer.toggle();" routerLink="/admin">
+        <p class="itemText">Adminpanel</p>
       </div>
       <div *ngFor="let cat of categories;" [class]="verifyRoute(router.url, '/categoria/'+cat.id)" (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" >
         <p class="itemText">{{cat.title}}</p>

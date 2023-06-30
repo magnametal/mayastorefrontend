@@ -11,6 +11,7 @@ import { AlertContent } from './components/alert-dialog-content/alert-dialog-con
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     CarritoComponent,
     RegistroComponent,
     OneProductComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

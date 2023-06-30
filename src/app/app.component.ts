@@ -3,12 +3,13 @@ import { environment } from 'src/environments/environment';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ThemeServiceService } from './services/theme-service.service';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { SessionService } from './services/session.service';
 import { ApiService } from './services/api.service';
 import { AlertServiceService } from './services/alert-service.service';
 import { LocalStorageServiceService } from './services/local-storage-service.service';
 import { CarritoServiceService } from './services/carrito-service.service';
+import { filter } from 'rxjs/operators';
 
 
 @UntilDestroy()
@@ -52,6 +53,8 @@ export class AppComponent {
   getCategories(){
     this.api.apiGetRequest(`categorias`).subscribe({
       next: (resp: any) => {
+        console.log(resp);
+        
         if (resp.ok) {
           this.categories = resp.categories;
         }
@@ -78,5 +81,20 @@ export class AppComponent {
   toggle(e:any){
     e.checked
     this.locastorageservice.saveData('theme', e.checked?'1':'0');
+  }
+  public navigate (route: string): void {
+      this.router.navigateByUrl(route)
+      document.getElementsByTagName('mat-drawer-content')[0].scrollTo(0, 0)
+  }
+  verifyAdmin(){
+    if (this.sesionService.userData) {
+      if (this.sesionService.userData.role=='ADMIN_ROLE') {
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
   }
 }

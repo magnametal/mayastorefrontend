@@ -30,7 +30,7 @@ export class OneProductComponent {
   ngOnInit(): void {
     // SOlicitar a servidor información de producto    
     this.route.params.subscribe(params => {
-      this.getProductsOneProduct(params.id)
+      this.getProductsOneProduct(params.id);
     });
   }
   ngAfterContentInit() {
@@ -45,6 +45,7 @@ export class OneProductComponent {
           this.recommended = resp.recommended;
         }
         this.loaderService.setLoading(false);
+        document.getElementsByTagName('mat-drawer-content')[0].scrollTo(0, 0)
       },
       error: (e: any) => {
         this.alertService.alertMessage('Error de servidor', 'Error');

@@ -1,0 +1,186 @@
+.mainContentAdmin {
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #B489D2;
+    flex-direction: column;
+    min-height: 600px;
+}
+
+.adminMenuContainer {
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.menuClass {
+    width: 30%;
+}
+
+.contentClass {
+    width: 69%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    margin: 1px;
+}
+
+.menuButton {
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    // background-color: #d5d5d5;
+    border-radius: 7px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menuButton:hover {
+    width: 100%;
+    height: 40px;
+    background-color: #d5d5d5;
+    border-radius: 7px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menuButtonActive {
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B489D2;
+    color: #fff;
+    cursor: pointer;
+}
+
+.UserMenuItem {
+    width: 91%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: solid 3px #B489D2;
+    margin: 2px;
+    border-radius: 7px;
+}
+
+.ceroContentList {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 50%;
+    border: solid 3px;
+    border-color: #B489D2;
+}
+
+.firstContentList {
+    width: 30%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.secondContentList {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+
+.banButton {
+    color: red;
+}
+
+.unbanButton {
+    color: green;
+}
+
+.ProductsMenuItem {
+    width: 91%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: solid 3px #B489D2;
+    margin: 2px;
+    border-radius: 7px;
+}
+
+.editbutton{
+    color: #B489D2;
+}
+
+
+.actionsBarProducts{
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.actionNewProd{
+    margin-top: 20px;
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 10px;
+    min-width: 220px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 680px) {
+    .adminMenuContainer{
+        width: 97%;
+        margin-top: 0;
+        border: none;
+    }
+    .ProductsMenuItem{
+        flex-direction: column;
+    }
+    .UserMenuItem{
+        flex-direction: column;
+    }
+    .firstContentList{
+        width: 96%;
+        align-items: center;
+    }
+    .secondContentList {
+        width: 100%;
+        justify-content: center;
+
+    }
+    .actionsBarProducts{
+        flex-direction: column;
+        justify-content: center;
+    }
+}

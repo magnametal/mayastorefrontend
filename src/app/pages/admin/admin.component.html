@@ -1,0 +1,79 @@
+<div class="mainContentAdmin" *ngIf="!loaderService.loading">
+    <div class="adminMenuContainer">
+        <div class="menuClass">
+            <div [class]="activeRoute=='users'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('users')">Usuarios</div>
+            <div [class]="activeRoute=='products'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('products')">Productos</div>
+            <div [class]="activeRoute=='categories'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('categories')">Categorías</div>
+        </div>
+        <div class="contentClass" *ngIf="activeRoute=='users'">
+            <div class="actionsBarProducts">
+                <h4>Lista de usuarios</h4>
+            </div>
+            <div class="UserMenuItem" *ngFor="let usr of users;">
+                <img class="ceroContentList" [src]="usr.img" [alt]="'profile_'+usr.id">
+                <div class="firstContentList">
+                    <h4>{{usr.email}}</h4>
+                    <p>{{ usr.status==1?'Activo':'Deshabilitado'}}</p>
+                    <p>{{ usr.code+usr.phone }}</p>
+                </div>
+                <div class="secondContentList">
+                    <button *ngIf="usr.status==0" mat-icon-button class="unbanButton">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button *ngIf="usr.status==1" mat-icon-button class="banButton">
+                        <mat-icon>block</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="contentClass" *ngIf="activeRoute=='products'">
+            <div class="actionsBarProducts">
+                <h4>Lista de productos</h4>
+                <button class="actionNewProd">Agregar Producto</button>
+            </div>
+            <div class="ProductsMenuItem" *ngFor="let pro of products;">
+                <img class="ceroContentList" [src]="pro.images[0]" [alt]="'product_'+pro.id">
+                <div class="firstContentList">
+                    <h4>{{ pro.title }}</h4>
+                    <p>{{ pro.active ?'Activo':'Deshabilitado'}}</p>
+                    <p>{{ pro.price }}$</p>
+                    <p>{{ pro.category.title}}</p>
+                </div>
+                <div class="secondContentList">
+                    <button mat-icon-button class="editbutton">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button *ngIf="!pro.active" mat-icon-button class="unbanButton">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button *ngIf="pro.active" mat-icon-button class="banButton">
+                        <mat-icon>block</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="contentClass" *ngIf="activeRoute=='categories'">
+            <div class="actionsBarProducts">
+                <h4>Lista de categorías</h4>
+                <button class="actionNewProd">Agregar Categoría</button>
+            </div>
+            <div class="ProductsMenuItem" *ngFor="let cat of categories;">
+                <div class="firstContentList">
+                    <h4>{{ cat.title }}</h4>
+                    <p>{{ cat.active ?'Activo':'Deshabilitado'}}</p>
+                </div>
+                <div class="secondContentList">
+                    <button mat-icon-button class="editbutton" *ngIf="cat.title!='Ninguna'">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="banButton" *ngIf="cat.title!='Ninguna'">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
