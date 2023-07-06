@@ -20,10 +20,17 @@ moment.locale('es');
 export class CategoriaComponent {
   constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public productsService: ProductsService, private route: ActivatedRoute, private alertService: AlertServiceService, public loaderService: LoaderService) {}
   category: any;
+  subcategory: any;
+  subcategories: any[]=[];
+  onlycats:any = true;
   products:any[]=[];
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.getProductsBycategory(params.category)
+      if (params.subcategory=='0') {
+        this.getProductsBycategory(params.category)
+      }else{
+        this.getProductsBySubcategory(params.category, params.subcategory)
+      }
     });
   }
   getProductsBycategory(cat:any){
@@ -31,8 +38,33 @@ export class CategoriaComponent {
     this.api.apiGetRequest(`productos/categoria/${cat}`).subscribe({
       next: (resp: any) => {
         if (resp.ok) {
-          this.products = resp.products;
+          if (!resp.onlycats) {
+            this.subcategories = resp.subcategories;
+          }else{
+            this.products = resp.products;
+          }
           this.category = resp.category;
+          this.subcategory = false;
+          this.onlycats = resp.onlycats;
+        }
+        this.loaderService.setLoading(false);
+      },
+      error: (e: any) => {
+        this.alertService.alertMessage('Error de servidor', 'Error');
+        console.log(e);
+        this.loaderService.setLoading(false);
+      },
+    });
+  }
+  getProductsBySubcategory(cat:any, subcat:any){
+    this.loaderService.setLoading(true);
+    this.api.apiGetRequest(`productos/subcategoria/${cat}/${subcat}`).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.products = resp.products;
+          this.subcategory = resp.subcategory;
+          this.category = resp.category;
+          this.onlycats = true;
         }
         this.loaderService.setLoading(false);
       },

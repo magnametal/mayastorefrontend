@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>{{ this.title }} 
+  <button mat-icon-button class="editbutton" *ngIf="data.mode=='view'" (click)="editMode()">
+    <mat-icon>edit</mat-icon>
+  </button>
+</h1>
+<mat-dialog-content mat-dialog-content *ngIf="data.mode=='view'">
+  <div class="dialogSectionCenter">
+    <div class="imagesRail">
+      <img *ngFor="let pic of images; let i = index;" class="picItemCard" [src]="pic" [alt]="'dialog_pic_'+i">
+    </div>
+    <div class="infoContent">
+      <p>Status: {{active}}</p>
+      <p>Precio: {{price}}$</p>
+      <p>Categoría: {{category.title}}</p>
+      <p *ngIf="subcategory">Subcategoría: {{subcategory.title}}</p>
+      <p>{{description}}$</p>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-content mat-dialog-content *ngIf="data.mode=='edit'">
+  <div class="maineditcontent">
+    <div class="dialogSectionleft">
+      <div class="imagesRail">
+        <div *ngIf="loadingimgBB" class="picItemCard"><mat-spinner color="accent"></mat-spinner>
+        </div>
+        <img *ngFor="let pic of images; let e = index;" class="picItemCardEdit" [src]="pic" [alt]="'dialog_edit_pic_'+e" (click)="deleteimage(e)">
+      </div>
+      <div class="dialogSectionCenter">
+        <button mat-button color="primary" type="button" (click)="fileInput.click()">
+          <span>Subir imagen</span>
+          <input #fileInput type="file" (change)="validateSize($event);" style="display: none"
+            accept=".png, .jpg, .jpeg" />
+        </button>
+      </div>
+      <input type="text" [(ngModel)]="title" class="inputClassDialogProduct" placeholder="Título">
+      <textarea type="text" [(ngModel)]="description" class="inputClassDialogProductArea" placeholder="Descripción del producto">
+      </textarea>
+      <input type="number" [(ngModel)]="price" class="inputClassDialogProduct" placeholder="Precio">
+      <select class="inputClassSelect" [(ngModel)]="selectedCategory" name="" id="">
+        <option *ngFor="let cat of categories;" [value]="cat.id">{{cat.title}}</option>
+      </select>
+      <select *ngIf="getsubcats(selectedCategory)" class="inputClassSelect" [(ngModel)]="selectedSubcategory" name="" id="">
+        <option *ngFor="let subcat of categories[catIndex].subcategories;" [value]="subcat.id">{{subcat.title}}</option>
+      </select>
+      <mat-slide-toggle [(ngModel)]="active">Estado: {{ active?'Activo':'Deshabilitado' }}</mat-slide-toggle>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button> 
+  <button mat-button cdkFocusInitial (click)="actualizarproducto()" *ngIf="data.mode=='edit'">Guardar</button>
+</mat-dialog-actions>

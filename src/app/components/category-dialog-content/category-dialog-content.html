@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ data.mode=='edit' ? title : (type=='category'?'Nueva categoría':'Nueva Subcategoría') }}</h1>
+<mat-dialog-content mat-dialog-content *ngIf="data.mode=='new' && !loading">
+  <div class="dialogSectionCenter">
+    <input type="text" [(ngModel)]="title" class="inputClassDialogProduct" placeholder="Título">
+  </div>
+</mat-dialog-content>
+<mat-dialog-content mat-dialog-content *ngIf="data.mode=='edit' && !loading">
+  <div class="dialogSectionCenter">
+    <input type="text" [(ngModel)]="title" class="inputClassDialogProduct" placeholder="Título">
+    <div class="toggleActiveClass">
+      <mat-slide-toggle [(ngModel)]="active">Estado: {{ active?'Activo':'Deshabilitado' }}</mat-slide-toggle>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="!loading">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button cdkFocusInitial *ngIf="type=='category' && data.mode=='edit'" (click)="editCategory()">Guardar</button>
+  <button mat-button cdkFocusInitial *ngIf="type=='category' && data.mode=='new'" (click)="newCategory()">Guardar</button>
+  <button mat-button cdkFocusInitial *ngIf="type=='subcategory' && data.mode=='edit'" (click)="editSubcategory()">Guardar</button>
+  <button mat-button cdkFocusInitial *ngIf="type=='subcategory' && data.mode=='new'" (click)="newSubcategory()">Guardar</button>
+</mat-dialog-actions>
+<div class="dialogLoaderContainer" *ngIf="loading">
+  <mat-spinner color="accent"></mat-spinner>
+</div>

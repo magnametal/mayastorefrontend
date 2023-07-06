@@ -72,6 +72,13 @@ export class AppComponent {
       return this.themeService.darktheme?'menuContainerBlack':'menuContainer';
     }
   }
+  verifySubmenuRoute(actualRoute:any, wishRoute:any){
+    if (actualRoute==wishRoute) {
+      return this.themeService.darktheme?'subcategoryMenuDivActiveBlack':'subcategoryMenuDivActive';
+    }else{
+      return this.themeService.darktheme?'subcategoryMenuDivBlack':'subcategoryMenuDiv';
+    }
+  }
   emailPrivaticy(email:any){
     return email.substring(0, 2)+'****'+email.substring(14);
   }

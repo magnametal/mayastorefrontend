@@ -36,7 +36,7 @@ const routes: Routes = [
     component: OneProductComponent,
   },
   {
-    path: 'categoria/:category',
+    path: 'categoria/:category/:subcategory',
     component: CategoriaComponent,
   },
   {

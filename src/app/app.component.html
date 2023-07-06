@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true" autosize>
-  <mat-drawer #drawer [class]="themeService.darktheme?'example-sidenavBlack':'example-sidenav'" mode="side">
+  <mat-drawer #drawer [class]="themeService.darktheme?'example-sidenavBlack':'example-sidenav'" mode="over">
     <div class="sidenavTitles">
       <img src="./assets/logo_small.png" class="menuLogoSideNav" alt="logo1">
       <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" color="accent"
@@ -22,8 +22,21 @@
       <div *ngIf="verifyAdmin()" [class]="verifyRoute(router.url, '/admin')" (click)="drawer.toggle();" routerLink="/admin">
         <p class="itemText">Adminpanel</p>
       </div>
-      <div *ngFor="let cat of categories;" [class]="verifyRoute(router.url, '/categoria/'+cat.id)" (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" >
-        <p class="itemText">{{cat.title}}</p>
+      <div *ngFor="let cat of categories;" class="dinamicitemClass">
+        <ng-template #disabledItem>
+          <div (click)="!cat.opened?cat.opened=true:cat.opened=false" [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')">
+            <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true" class="itemText">{{cat.title}}</p>
+            <mat-icon >arrow_drop_down</mat-icon>
+          </div>
+          <div *ngIf="cat.opened" class="externalDiv" >
+            <div [class]="verifySubmenuRoute(router.url, '/categoria/'+cat.id+'/'+subcat.id)+' internalSubCatDiv animate__animated animate__fadeInLeft animate__faster'" *ngFor="let subcat of cat.subcategories;" [routerLink]="'/categoria/'+cat.id+'/'+subcat.id" [replaceUrl]="true" >
+              <p class="itemTextSubcat">{{subcat.title}}</p>
+            </div>
+          </div>
+        </ng-template>
+        <div *ngIf="cat.subcategories.length==0; else disabledItem" [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')" (click)="drawer.toggle();" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true">
+          <p  (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" class="itemText">{{cat.title}}</p>
+        </div>
       </div>
       <span class="divider"></span>
       <div [class]="verifyRoute(router.url, '/nosotros')">

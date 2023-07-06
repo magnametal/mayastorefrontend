@@ -13,6 +13,12 @@ import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
 
+// Componentes
+
+import { ProductoDialogContent } from './components/producto-dialog-content/producto-dialog-content';
+import { CategoryDialogContent } from './components/category-dialog-content/category-dialog-content';
+
+
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +27,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroComponent,
     OneProductComponent,
     CategoriaComponent,
+    ProductoDialogContent,
+    CategoryDialogContent,
     AdminComponent
   ],
   imports: [
@@ -43,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatSlideToggleModule,
     MatDialogModule,

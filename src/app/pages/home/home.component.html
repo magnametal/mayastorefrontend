@@ -1,7 +1,7 @@
 <div class="mainContentHome" *ngIf="!loaderService.loading">
     <div class="homeConteiner">
         <div *ngFor="let category of categories" class="productsMainItem">
-            <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'" [routerLink]="['/categoria', category.category]"><h4>{{ category.title }}</h4></div>
+            <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'" [routerLink]="['/categoria/'+category.category+'/0']"><h4>{{ category.title }}</h4></div>
             <div class="railproducts">
                 <div class="cardProduct" *ngFor="let product of category.products" [routerLink]="['/producto', product.id]">
                     <img class="productPic" [src]="product.images[0]" alt="">

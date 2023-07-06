@@ -1,0 +1,93 @@
+.dialogSectionCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  flex-direction: column;
+}
+.previewContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.previewImg {
+  width: 90%;
+}
+
+.inputTitle{
+  width: 80%;
+}
+
+.imagesRail{
+  width: 70%;
+  height: 160px;
+}
+
+.picItemCard{
+  height: 140px;
+  margin: 10px;
+}
+
+.infoContent{
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputClassDialogProduct {
+  margin-top: 30px;
+  min-width: 200px;
+  background-color: #B489D2;
+  height: 32px;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 3px;
+}
+
+
+.inputClassDialogProductArea {
+  margin-top: 30px;
+  min-width: 200px;
+  background-color: #B489D2;
+  height: 64px;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 3px;
+}
+
+
+.inputClassSelect{
+  margin-top: 30px;
+  width: 200px;
+  background-color: #B489D2;
+  min-height: 36px;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 3px;
+}
+
+.toggleActiveClass{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

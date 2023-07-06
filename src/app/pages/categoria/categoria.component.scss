@@ -13,6 +13,17 @@
     align-items: center;
     justify-content: flex-start;
     color: #B489D2;
+    font-size: large;
+    cursor: pointer;
+}
+.subcategoryTitle{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #B489D2;
+    font-size: large;
+    cursor: pointer;
 }
 .categoryItemList{
     width: 70%;
@@ -66,4 +77,49 @@
     align-items: center;
     justify-content: flex-start;
     color: #B489D2;
+}
+.categoryItemListSubcat{
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.itemCategoryCardSubcat{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.subcategoryforMain{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.subCatItemCard{
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 2px;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+}
+
+.divPictureCategoryCoverSub{
+    width: 180px;
+    height: 220px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 4px 4px 0px 0px;
 }

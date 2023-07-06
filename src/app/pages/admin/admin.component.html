@@ -1,9 +1,10 @@
 <div class="mainContentAdmin" *ngIf="!loaderService.loading">
     <div class="adminMenuContainer">
         <div class="menuClass">
-            <div [class]="activeRoute=='users'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('users')">Usuarios</div>
-            <div [class]="activeRoute=='products'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('products')">Productos</div>
-            <div [class]="activeRoute=='categories'?'menuButtonActive':'menuButton'" (click)="changeAdminRoute('categories')">Categorías</div>
+            <div [class]="activeRoute=='users'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'): (themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('users')">Usuarios</div>
+            <div [class]="activeRoute=='products'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('products')">Productos</div>
+            <div [class]="activeRoute=='categories'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('categories')">Categorías</div>
+            <div [class]="activeRoute=='sales'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('sales')">Ventas</div>
         </div>
         <div class="contentClass" *ngIf="activeRoute=='users'">
             <div class="actionsBarProducts">
@@ -17,6 +18,12 @@
                     <p>{{ usr.code+usr.phone }}</p>
                 </div>
                 <div class="secondContentList">
+                    <button *ngIf="usr.role=='ADMIN_ROLE'" mat-icon-button class="adminIcon">
+                        <mat-icon>workspace_premium</mat-icon>
+                    </button>
+                    <button *ngIf="usr.role!='ADMIN_ROLE'" mat-icon-button class="userIcon">
+                        <mat-icon>person</mat-icon>
+                    </button>
                     <button *ngIf="usr.status==0" mat-icon-button class="unbanButton">
                         <mat-icon>check_circle</mat-icon>
                     </button>
@@ -29,25 +36,21 @@
         <div class="contentClass" *ngIf="activeRoute=='products'">
             <div class="actionsBarProducts">
                 <h4>Lista de productos</h4>
-                <button class="actionNewProd">Agregar Producto</button>
+                <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'">Agregar Producto</button>
             </div>
             <div class="ProductsMenuItem" *ngFor="let pro of products;">
-                <img class="ceroContentList" [src]="pro.images[0]" [alt]="'product_'+pro.id">
-                <div class="firstContentList">
+                <img class="ceroContentList" [src]="pro.images[0]" [alt]="'product_'+pro.id"  (click)="dialogProduct('view', pro)">
+                <div class="firstContentList"  (click)="dialogProduct('view', pro)">
                     <h4>{{ pro.title }}</h4>
                     <p>{{ pro.active ?'Activo':'Deshabilitado'}}</p>
                     <p>{{ pro.price }}$</p>
                     <p>{{ pro.category.title}}</p>
+                    <p *ngIf="pro.subcategory">{{ pro.subcategory.title}}</p>
+                    
                 </div>
                 <div class="secondContentList">
-                    <button mat-icon-button class="editbutton">
+                    <button mat-icon-button class="editbutton" (click)="dialogProduct('edit', pro)">
                         <mat-icon>edit</mat-icon>
-                    </button>
-                    <button *ngIf="!pro.active" mat-icon-button class="unbanButton">
-                        <mat-icon>check_circle</mat-icon>
-                    </button>
-                    <button *ngIf="pro.active" mat-icon-button class="banButton">
-                        <mat-icon>block</mat-icon>
                     </button>
                 </div>
             </div>
@@ -55,21 +58,85 @@
         <div class="contentClass" *ngIf="activeRoute=='categories'">
             <div class="actionsBarProducts">
                 <h4>Lista de categorías</h4>
-                <button class="actionNewProd">Agregar Categoría</button>
+                <div class="actions">
+                    <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!catsOrderActive" (click)="dialogCategory('new', 'category')">Agregar Categoría</button>
+                    <button mat-icon-button *ngIf="!catsOrderActive" (click)="reorderCategorySwitch()">
+                        <mat-icon>low_priority</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="catsOrderActive" (click)="reorderCategorySwitch()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
             </div>
-            <div class="ProductsMenuItem" *ngFor="let cat of categories;">
-                <div class="firstContentList">
-                    <h4>{{ cat.title }}</h4>
-                    <p>{{ cat.active ?'Activo':'Deshabilitado'}}</p>
+            <div class="ProductsMenuItem especialOnlyColumn" *ngFor="let cat of categories; let i = index;">
+                <div class="categoryFullContent">
+                    <div class="firstContentList">
+                        <h4>{{ cat.title }}</h4>
+                        <p>{{ cat.active ?'Activo':'Deshabilitado'}}</p>
+                    </div>
+                    <div class="secondContentList">
+                        <button mat-icon-button class="editbutton" *ngIf="cat.title!='Ninguna' && !catsOrderActive" (click)="dialogCategory('edit', 'category', cat)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button class="banButton" *ngIf="cat.title!='Ninguna' && !catsOrderActive" (click)="deleteCategoria(cat)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="arrowsOrderContainer" *ngIf="catsOrderActive">
+                            <button mat-icon-button *ngIf="cat.title!='Ninguna' && i!=0" (click)="reorderCats(i, '-')" >
+                                <mat-icon>keyboard_arrow_up</mat-icon>
+                            </button>
+                            <button mat-icon-button *ngIf="cat.title!='Ninguna' && categories[i+2]" (click)="reorderCats(i, '+')">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="secondContentList">
-                    <button mat-icon-button class="editbutton" *ngIf="cat.title!='Ninguna'">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button class="banButton" *ngIf="cat.title!='Ninguna'">
-                        <mat-icon>delete</mat-icon>
-                    </button>
+                <div [class]="themeService.darktheme?'actionsBarNoneProductsBlack':'actionsBarNoneProducts'" *ngIf="cat.subcategories.length==0">
+                    <p *ngIf="cat.subcategories.length==0">Sin subcategorías</p>
+                    <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat.id)">Agregar Subcategoría</button>
                 </div>
+                <div [class]="themeService.darktheme?'ProductsMenuItemSubcatBlack':'ProductsMenuItemSubcat'" *ngIf="cat.title!='Ninguna' && cat.subcategories.length!=0">
+                    <div class="actionsBarProducts">
+                        <h4>Subcategorías</h4>
+                        <div class="actions">
+                            <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat.id)">Agregar Subcategoría</button>
+                            <button mat-icon-button *ngIf="!cat.subcatEdit" (click)="cat.subcatEdit=true;">
+                                <mat-icon>low_priority</mat-icon>
+                            </button>
+                            <button mat-icon-button *ngIf="cat.subcatEdit" (click)="cat.subcatEdit=false;">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div [class]="themeService.darktheme?'ProductsMenuItemSubcatBlack':'ProductsMenuItemSubcat'" *ngFor="let subcat of cat.subcategories; let e = index;">
+                    <div class="firstContentList">
+                        <h4>{{ subcat.title }}</h4>
+                        <p>{{ subcat.active ?'Activo':'Deshabilitado'}}</p>
+                    </div>
+                    <div class="secondContentList">
+                        <button mat-icon-button class="editbutton" *ngIf="subcat.title!='Ninguna' && !cat.subcatEdit" (click)="dialogCategory('edit', 'subcategory', subcat, cat.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button class="banButton" *ngIf="subcat.title!='Ninguna' && !cat.subcatEdit" (click)="deleteSubcategoria(subcat)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="arrowsOrderContainer" *ngIf="cat.subcatEdit">
+                            <button mat-icon-button *ngIf="e!=0" (click)="reorderSubcats(i, e, '-')" >
+                                <mat-icon>keyboard_arrow_up</mat-icon>
+                            </button>
+                            <button mat-icon-button *ngIf="cat.subcategories[e+1]" (click)="reorderSubcats(i, e, '+')">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="cat.subcatEdit">
+                    <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" (click)="saveSubcatsOrder(i)">Guardar Orden</button>
+                </div>
+            </div>
+            <div *ngIf="catsOrderActive">
+                <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" (click)="saveCatsOrder()">Guardar Orden</button>
             </div>
         </div>
     </div>

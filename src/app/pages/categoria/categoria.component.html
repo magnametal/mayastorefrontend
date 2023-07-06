@@ -6,15 +6,34 @@
         </button>
     </div>
     <div class="categoryTitle" *ngIf="category">
-        <h3>{{ category.title }}</h3>
+        <h3 [routerLink]="['/categoria/'+category.id+'/0']">{{ category.title }}</h3>
+        <mat-icon *ngIf="subcategory">chevron_right</mat-icon>
+        <h3 *ngIf="subcategory">{{ subcategory.title }}</h3>
     </div>
-    <div class="categoryItemList">
+    <div class="categoryItemList" *ngIf="onlycats || subcategory">
         <div class="itemCategoryCard" *ngFor="let prod of products;" [routerLink]="['/producto', prod.id]">
             <div class="divPictureCategoryCover" [style]="'background-image: url('+prod.images[0]+');'">
             </div>
             <div class="productCategoryItemInfo">
                 <h4>{{prod.price}}$</h4>
             </div>
+        </div>
+    </div>
+    <div class="categoryItemListSubcat" *ngIf="!onlycats">
+        <div *ngFor="let subcat of subcategories;" class="subcategoryforMain">
+            <div class="subcategoryTitle" [routerLink]="['/categoria/'+category.id+'/'+subcat.subcategory.id]">
+                <h3>{{ subcat.subcategory.title }}</h3>
+            </div>
+            <div class="itemCategoryCardSubcat">
+                <div class="subCatItemCard" *ngFor="let prod of subcat.products;" [routerLink]="['/producto', prod.id]">
+                    <div class="divPictureCategoryCoverSub" [style]="'background-image: url('+prod.images[0]+');'">
+                    </div>
+                    <div class="productCategoryItemInfo">
+                        <h4>{{prod.price}}$</h4>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
