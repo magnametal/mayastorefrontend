@@ -7,6 +7,8 @@ import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ImgbbService } from 'src/app/services/imgbb.service';
 import { environment } from 'src/environments/environment';
+import { ThemePalette } from '@angular/material/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'producto-dialog-content',
@@ -21,8 +23,14 @@ import { environment } from 'src/environments/environment';
       private alertService: AlertServiceService,
       private imgbbService: ImgbbService
     ) {}
+    public color: ThemePalette = 'primary';
+    public touchUi = false;
+    colorCtr: AbstractControl = new FormControl(null);
+    colors:any[]=[];
+    tallas:any[]=[];
     title:any;
     price:any;
+    selectedColor:any='#000000';
     catIndex:any;
     images:any[]=[];
     categories:any[]=[];
@@ -31,17 +39,19 @@ import { environment } from 'src/environments/environment';
     category:any;
     loadingimgBB:any;
     subcategory:any;
+    pickerFlag:any=false;
     loading:any=false;
     selectedCategory:any;
     selectedSubcategory:any;
     description:any
     ngAfterContentInit() {
-      const { title, images, price, active, category, subcategory, description } = this.data.product;
+      const { title, images, price, active, category, colors, subcategory, description } = this.data.product;
       this.title = title;
       this.images = images;
       this.active = active;
       this.price = price;
       this.category = category;
+      this.colors = colors;
       if (subcategory) {
         this.subcategory = subcategory;
         this.selectedSubcategory = subcategory.id;
@@ -49,6 +59,7 @@ import { environment } from 'src/environments/environment';
       this.description = description;
       this.selectedCategory = category.id;
       this.getCategories();
+      this.getSizes();
     }
     ngOnInit(): void {}
     getCategories(){
@@ -56,6 +67,27 @@ import { environment } from 'src/environments/environment';
         next: (resp: any) => {
           if (resp.ok) {
             this.categories = resp.categories;
+          }
+        },
+        error: (e: any) => {
+          this.alertService.alertMessage('Error de servidor', 'Error');
+          console.log(e);
+        },
+      });
+    }
+    getSizes(){
+      this.api.apiGetRequest(`tallas/todas`).subscribe({
+        next: (resp: any) => {
+          if (resp.ok) {
+            let finalTallas = resp.sizes;
+            finalTallas.forEach((size:any, i:any) => {
+              for (const actualSize of this.data.product.sizes) {
+                if (actualSize.id==size.id) {
+                  finalTallas[i].active = true;
+                }
+              }
+            });
+            this.tallas = finalTallas;
           }
         },
         error: (e: any) => {
@@ -94,13 +126,20 @@ import { environment } from 'src/environments/environment';
           this.selectedSubcategory = undefined;
         }
         if (bandera) {
-          this.selectedCategory
+          let exitsize = [];
+          for (const talla of this.tallas) {
+            if (talla.active) {
+              exitsize.unshift(talla.id);
+            }
+          }
           this.loading = true;
           const data = { 
             title: this.title, 
             active: this.active,
             images : this.images,
             price : this.price,
+            sizes: exitsize,
+            colors: this.colors,
             category : this.selectedCategory,
             subcategory : this.selectedSubcategory,
             description: this.description
@@ -157,5 +196,28 @@ import { environment } from 'src/environments/environment';
     }
     closeDialog() {
       this.dialogRef.close(true);
+    }
+    changeComplete(e:any){
+      this.selectedColor = e.color.hex;
+    }
+    switchColor(){
+      this.pickerFlag = !this.pickerFlag;
+    }
+    setColor(){
+      this.colors.unshift(this.selectedColor);
+      this.selectedColor = '#000000'
+      this.switchColor();
+    }
+    vienePorTallas(){
+      let bandera = false;
+      for (const talla of this.tallas) {
+        if (talla.active) {
+          bandera = true;
+        }
+      }
+      return bandera;
+    }
+    removeColor(index:any){
+      this.colors.splice(index, 1);
     }
   }

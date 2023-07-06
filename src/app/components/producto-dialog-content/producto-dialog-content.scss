@@ -114,3 +114,113 @@
 .mat-dialog-content{
   height: 90vh;
 }
+
+.pickerDivClass{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 11;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  padding: 20px;
+}
+
+.PickerSubDiv{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid 3px;
+  border-color: #B489D2;
+}
+
+.buttonPickerClass{
+  margin-top: 10px;
+  background-color: #B489D2;
+  color: #fff;
+}
+
+.colorsContentRail{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.pickerItemSpan{
+  width: 25px;
+  height: 25px;
+  border: solid 1px;
+  border-radius: 10px;
+  border-color: #fff;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.tallaButtonActive{
+  width: 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #000000;
+  margin: 2px;
+  cursor: pointer;
+}
+.tallaButtonView{
+  width: 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #000000;
+  opacity: 0.2;
+  margin: 2px;
+}
+.tallaButtonViewActive{
+  width: 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #000000;
+  margin: 2px;
+}
+
+.tallaButton{
+  width: 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #000000;
+  opacity: 0.2;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.sizesRailDiv{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 400px) {
+  .sizesRailDiv{
+      display: inline-block;
+  }
+}
+
+.advertClass{
+  font-size: x-small;
+}

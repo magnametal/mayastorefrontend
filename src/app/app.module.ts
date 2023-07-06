@@ -29,6 +29,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ColorChromeModule } from 'ngx-color/chrome'; // <color-chrome></color-chrome>
 
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -54,9 +56,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    ColorChromeModule,
     MatSlideToggleModule,
     MatDialogModule,
     MatSidenavModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,

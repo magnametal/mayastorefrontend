@@ -9,11 +9,21 @@
       <img *ngFor="let pic of images; let i = index;" class="picItemCard" [src]="pic" [alt]="'dialog_pic_'+i">
     </div>
     <div class="infoContent">
-      <p>Status: {{active}}</p>
+      <p *ngIf="colors.length!=0">Colores disponibles: </p>
+      <div *ngIf="colors.length!=0" class="colorsContentRail">
+        <span *ngFor="let col of colors; let o = index;" class="pickerItemSpan" [style]="'background-color: '+col"></span>
+      </div>
+      <p *ngIf="vienePorTallas()">Tallas disponibles:</p>
+      <div class="sizesRailDiv" *ngIf="vienePorTallas()">
+        <div *ngFor="let size of tallas;" [class]="size.active?'tallaButtonViewActive':'tallaButtonView'">
+          {{ size.title }}
+        </div>
+      </div>
+      <p>Estado: {{active?'Activo':'Deshabilitado'}}</p>
       <p>Precio: {{price}}$</p>
       <p>Categoría: {{category.title}}</p>
       <p *ngIf="subcategory">Subcategoría: {{subcategory.title}}</p>
-      <p>{{description}}$</p>
+      <p>{{description}}</p>
     </div>
   </div>
 </mat-dialog-content>
@@ -31,6 +41,28 @@
           <input #fileInput type="file" (change)="validateSize($event);" style="display: none"
             accept=".png, .jpg, .jpeg" />
         </button>
+      </div>
+      <p>Colores disponibles:</p>
+      <div class="colorsContentRail">
+        <span *ngFor="let col of colors; let o = index;" class="pickerItemSpan" [style]="'background-color: '+col" (click)="removeColor(o)"></span>
+      </div>
+      <p class="advertClass">Si el producto no viene por colores no indicar ninguno.</p>
+      <button mat-button (click)="switchColor()">Seleccionar Color</button>
+      <div class="pickerDivClass" *ngIf="pickerFlag">
+        <div class="PickerSubDiv">
+          <color-chrome [color]="selectedColor" (onChangeComplete)="changeComplete($event)"></color-chrome>
+          <button class="buttonPickerClass" color="primary" (click)="setColor()" mat-button>Agregar un Color</button>
+        </div>
+      </div>
+      <p>Tallas disponibles:</p>
+      <div class="sizesRailDiv">
+        <div *ngFor="let size of tallas;" [class]="size.active?'tallaButtonActive':'tallaButton'" (click)="size.active?size.active=false:size.active=true">
+          {{ size.title }}
+        </div>
+      </div>
+      <p class="advertClass">Si el producto no viene por tallas no indicar ninguna.</p>
+      <div *ngfor="let talla of tallas;">
+
       </div>
       <input type="text" [(ngModel)]="title" class="inputClassDialogProduct" placeholder="Título">
       <textarea type="text" [(ngModel)]="description" class="inputClassDialogProductArea" placeholder="Descripción del producto">
