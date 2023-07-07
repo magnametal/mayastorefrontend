@@ -158,23 +158,14 @@
 .pickerItemSpan{
   width: 25px;
   height: 25px;
-  border: solid 1px;
+  border: solid 3px;
   border-radius: 10px;
-  border-color: #fff;
+  border-color: #777777;
   cursor: pointer;
   margin: 5px;
 }
 
-.tallaButtonActive{
-  width: 60px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid 3px #000000;
-  margin: 2px;
-  cursor: pointer;
-}
+
 .tallaButtonView{
   width: 60px;
   padding: 10px;
@@ -194,7 +185,16 @@
   border: solid 3px #000000;
   margin: 2px;
 }
-
+.tallaButtonActive{
+  width: 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #000000;
+  margin: 2px;
+  cursor: pointer;
+}
 .tallaButton{
   width: 60px;
   padding: 10px;
@@ -223,4 +223,8 @@
 
 .advertClass{
   font-size: x-small;
+}
+
+.toggleActiveDiv{
+  margin: 20px;
 }

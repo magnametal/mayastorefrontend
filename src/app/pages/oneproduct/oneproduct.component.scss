@@ -1,4 +1,4 @@
-.mainContentOneProduct{
+.mainContentOneProduct {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +6,8 @@
     flex-direction: column;
     width: 100%;
 }
-.productOneContainer{
+
+.productOneContainer {
     width: 70%;
     display: flex;
     align-items: center;
@@ -14,11 +15,12 @@
     flex-direction: column;
     margin-top: 10px
 }
-.titleOneContainer{
+
+.titleOneContainer {
     width: 100%;
 }
 
-.productDetails{
+.productDetails {
     width: 100%;
     display: flex;
     align-items: center;
@@ -27,7 +29,7 @@
     margin-top: 30px;
 }
 
-.galleryContent{
+.galleryContent {
     width: 70%;
     display: flex;
     align-items: center;
@@ -35,12 +37,12 @@
     flex-direction: column;
 }
 
-.productPicGalleryItem{
+.productPicGalleryItem {
     max-width: 100%;
     --animate-duration: 0.5s;
 }
 
-.detailsContainer{
+.detailsContainer {
     width: 30%;
     padding: 10px;
     display: flex;
@@ -53,19 +55,21 @@
     .productDetails {
         flex-direction: column;
     }
-    .galleryContent{
+
+    .galleryContent {
         width: 94%
     }
-    .detailsContainer{
+
+    .detailsContainer {
         width: 94%;
     }
 }
 
-.textOneProduct{
+.textOneProduct {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%; 
+    width: 100%;
 }
 
 .inputClassOneProduct {
@@ -83,7 +87,7 @@
     margin: 3px;
 }
 
-.counter{
+.counter {
     width: 100%;
     display: flex;
     align-items: center;
@@ -91,7 +95,7 @@
     flex-direction: column;
 }
 
-.inputButtonAddcar{
+.inputButtonAddcar {
     margin-top: 20px;
     background-color: #fff;
     border: solid 3px;
@@ -136,11 +140,11 @@
     cursor: pointer;
 }
 
-.productsMainItemRecommended{
+.productsMainItemRecommended {
     width: 70%;
 }
 
-.mainSubinfo{
+.mainSubinfo {
     width: 97%;
     margin-top: 50px;
     display: flex;
@@ -154,20 +158,86 @@
         width: 88vw;
         height: auto;
     }
+
     .railproductsRecommended {
         height: auto;
         width: 100%;
     }
-    .productsMainItemRecommended{
+
+    .productsMainItemRecommended {
         width: 97%;
         padding: 10px;
     }
 }
 
-.divBack{
+.divBack {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
+.colorsContentRail {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.pickerItemSpan {
+    width: 25px;
+    height: 25px;
+    border: solid 3px;
+    border-radius: 10px;
+    border-color: #777777;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.pickerItemSpanActive{
+    width: 25px;
+    height: 25px;
+    border: solid 3px;
+    border-radius: 10px;
+    border-color: #000000;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.tallaButtonActive {
+    width: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 3px #000000;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.tallaButton {
+    width: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 3px #000000;
+    opacity: 0.4;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.sizesRailDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 400px) {
+    .sizesRailDiv {
+        display: inline-block;
+    }
+}

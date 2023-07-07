@@ -15,13 +15,8 @@ export class CarritoServiceService {
       this.carrito = JSON.parse(Mycarrito);
     }
   }
-  addproductoToCar(product:any, quantity:any){
-    const index = this.carrito.findIndex((item:any) => item.id==product.id);
-    if (index!=-1) {
-      this.carrito[index].quantity = this.carrito[index].quantity + quantity;
-    }else{
-      this.carrito.unshift({ quantity: quantity, ...product });
-    }
+  addproductoToCar(product:any){
+    this.carrito.unshift(product);
     this.alertService.alertMessage('Elemento agregado exitosamente', 'Acción exitosa');
     this.localStorageService.saveData('carrito', JSON.stringify(this.carrito));
   }

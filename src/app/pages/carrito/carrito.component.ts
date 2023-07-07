@@ -39,4 +39,20 @@ export class CarritoComponent {
   back(): void {
     this.location.back()
   }
+  getSubfinalPrice(product:any){
+    let price = 0;
+    for (const carro of product.car) {
+      price = price + (product.price*carro.quantity);
+    }
+    return price;
+  }
+  getFinalPrice(){
+    let price = 0;
+    this.carritoService.carrito.map(item => {
+      for (const carro of item.car) {
+        price = price + (item.price*carro.quantity);
+      }
+    })
+    return price;
+  }
 }

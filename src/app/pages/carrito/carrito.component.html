@@ -13,21 +13,32 @@
         <span class="divider"></span>
         <div class="carritoItem" *ngFor="let itemCar of carritoService.carrito; let i = index;">
             <div class="carritoItemTitle">
-                <h4>{{ itemCar.title }}</h4>
+                <div class="carritoAvatarInfo">
+                    <img class="productPicCarrito" [routerLink]="['/producto', itemCar.id]" [src]="itemCar.images[0]" alt="">
+                    <div class="carritoDataInfo">
+                        <h4>{{ itemCar.title }}</h4>
+                        <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>
+                    </div>
+                </div>
                 <button mat-icon-button color="accent" (click)="eliminarDeCarrito(i)">
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
             <div class="cardProductCarrito">
-                <img class="productPicCarrito" [src]="itemCar.images[0]" alt="">
-                <div class="itemContent">
-                    <p>Cantidad: {{ itemCar.quantity }}</p>
-                    <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>
+                <div class="itemContent" *ngFor="let car of itemCar.car;">
+                    <p>Cantidad: {{ car.quantity }}</p>
+                    <div *ngIf="car.size">
+                        Talla: {{car.size.title}}
+                    </div>
+                    <p *ngIf="car.color">Color: </p>
+                    <div *ngIf="car.color" class="colorsContentRail">
+                        <span class="pickerItemSpan" [style]="'background-color: '+car.color"></span>
+                    </div>
                 </div>
             </div>
             <div class="itemPrice">
                 <h3>
-                    {{ (itemCar.price*itemCar.quantity).toFixed(2) }}$
+                    {{(getSubfinalPrice(itemCar)).toFixed(2) }}$
                 </h3> 
             </div>
             <span class="divider"></span>
@@ -35,7 +46,7 @@
         <div class="totalPriceContainer">
             <div class="totalPrice">
                 <h3>Total</h3>
-                <h3>{{getTotalPrice()}}$</h3>
+                <h3>{{getFinalPrice().toFixed(2)}}$</h3>
             </div>
         </div>
         <div class="inputsClass">

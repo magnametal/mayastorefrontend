@@ -28,6 +28,16 @@
                     {{product.description}}
                 </p>
                 <h3 class="textOneProduct">{{ product.price }}$</h3>
+                <p *ngIf="product.colors.length!=0">Colores disponibles: </p>
+                <div *ngIf="product.colors.length!=0" class="colorsContentRail">
+                  <span *ngFor="let col of product.colors; let o = index;" [class]="o==indexcolor?'pickerItemSpanActive':'pickerItemSpan'" [style]="'background-color: '+col" (click)="setSelectedColor(o)"></span>
+                </div>
+                <p *ngIf="vienePorTallas()">Tallas disponibles:</p>
+                <div class="sizesRailDiv" *ngIf="vienePorTallas()">
+                  <div *ngFor="let size of product.sizes; let a = index;" [class]="size.active?'tallaButtonActive':'tallaButton'" (click)="setTalla(a)">
+                    {{ size.title }}
+                  </div>
+                </div>
                 <div class="counter">
                     <input type="number" (change)="changeQuantity($event)" class="inputClassOneProduct" placeholder="Cantidad" [(ngModel)]="quantity">
                     <button class="inputButtonAddcar" (click)="addToCar(product)">Agregar al carrito</button>

@@ -61,8 +61,11 @@
         </div>
       </div>
       <p class="advertClass">Si el producto no viene por tallas no indicar ninguna.</p>
-      <div *ngfor="let talla of tallas;">
+      <div *ngFor="let talla of tallas;">
 
+      </div>
+      <div class="toggleActiveDiv">
+        <mat-slide-toggle [(ngModel)]="active">Estado: {{ active?'Activo':'Deshabilitado' }}</mat-slide-toggle>
       </div>
       <input type="text" [(ngModel)]="title" class="inputClassDialogProduct" placeholder="Título">
       <textarea type="text" [(ngModel)]="description" class="inputClassDialogProductArea" placeholder="Descripción del producto">
@@ -74,7 +77,7 @@
       <select *ngIf="getsubcats(selectedCategory)" class="inputClassSelect" [(ngModel)]="selectedSubcategory" name="" id="">
         <option *ngFor="let subcat of categories[catIndex].subcategories;" [value]="subcat.id">{{subcat.title}}</option>
       </select>
-      <mat-slide-toggle [(ngModel)]="active">Estado: {{ active?'Activo':'Deshabilitado' }}</mat-slide-toggle>
+
     </div>
   </div>
 </mat-dialog-content>
