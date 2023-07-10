@@ -13,6 +13,8 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ContactanosComponent } from './pages/contactanos/contactanos.component';
+
 
 // Componentes
 
@@ -32,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ColorChromeModule } from 'ngx-color/chrome'; // <color-chrome></color-chrome>
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -47,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     CategoriaComponent,
     ProductoDialogContent,
     CategoryDialogContent,
+    ContactanosComponent,
     AdminComponent
   ],
   imports: [
@@ -63,6 +67,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatSidenavModule,
     MatFormFieldModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,

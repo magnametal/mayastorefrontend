@@ -1,11 +1,50 @@
 <div class="mainContentHome" *ngIf="!loaderService.loading">
-    <div class="homeConteiner">
+    <div class="homeConteiner" *ngIf="mode=='home'">
+        <div class="SearchBarMain">
+            <input type="text" [(ngModel)]="query" class="inputQuerySearch" placeholder="Encuentra un producto...">
+            <div class="queryButtonDiv">
+                <button class="inputButtonSearch" (click)="getQuerySearch()">Buscar</button>
+            </div>
+        </div>
         <div *ngFor="let category of categories" class="productsMainItem">
-            <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'" [routerLink]="['/categoria/'+category.category+'/0']"><h4>{{ category.title }}</h4></div>
+            <div [class]="themeService.darktheme?'categoryDiv categoryTitleDark':'categoryDiv categoryTitle'"
+                [routerLink]="['/categoria/'+category.category+'/0']">
+                <h4>{{ category.title }}</h4>
+            </div>
             <div class="railproducts">
-                <div class="cardProduct" *ngFor="let product of category.products" [routerLink]="['/producto', product.id]">
+                <div class="cardProduct" *ngFor="let product of category.products"
+                    [routerLink]="['/producto', product.id]">
                     <img class="productPic" [src]="product.images[0]" alt="">
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="homeConteiner" *ngIf="mode=='search'">
+        <div class="divBack">
+            <button mat-icon-button (click)="restoreHome()">
+                <mat-icon>navigate_before</mat-icon>
+                Volver
+            </button>
+        </div>
+        <div class="categoryTitleProducts">
+            <h3>Búsqueda: {{ query }}</h3>
+        </div>
+        <div class="categoryItemList">
+            <div class="itemCategoryCard" *ngFor="let prod of products;" [routerLink]="['/producto', prod.id]">
+                <div class="divPictureCategoryCover" [style]="'background-image: url('+prod.images[0]+');'">
+                </div>
+                <div class="productCategoryItemInfo">
+                    <p>{{prod.title}}</p>
+                    <h4>{{prod.price}}$</h4>
+                </div>
+            </div>
+            <div [class]="themeService.darktheme?'loaderContainerSearchDark':'loaderContainerSearch'" *ngIf="loadingSerach">
+                <mat-spinner color="accent"></mat-spinner>
+            </div>
+            <div class="paginator">
+                <mat-paginator [class]="themeService.darktheme?'paginationThemeDark':'paginationTheme'" [length]="totalPages" [pageSize]="12"
+                    (page)="pageEvent = $event; onPaginateChange($event)">
+                </mat-paginator>
             </div>
         </div>
     </div>

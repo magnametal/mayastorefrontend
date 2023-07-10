@@ -42,7 +42,7 @@
       <div [class]="verifyRoute(router.url, '/nosotros')">
         <p class="itemText">Nosotros</p>
       </div>
-      <div [class]="verifyRoute(router.url, '/contactanos')">
+      <div [class]="verifyRoute(router.url, '/contactanos')" (click)="drawer.toggle()" routerLink="/contactanos">
         <p class="itemText">Contáctanos</p>
       </div>
       <span class="divider"></span>
@@ -90,26 +90,26 @@
         <img src="./assets/logo_big.png" class="footerLogo" alt="logo3">
         <div class="footerClass2SubDiv">
           <div class="footerSection">
-            <div>
+            <div class="linkClassFooter" routerLink="/inicio">
               <p class="itemText2">Inicio</p>
             </div>
-            <div>
+            <div class="linkClassFooter" >
               <p class="itemText2">Nosotros</p>
             </div>
-            <div>
-              <p class="itemText2">Contáctanos</p>
+            <div class="linkClassFooter" >
+              <p class="itemText2" routerLink="/contactanos">Contáctanos</p>
             </div>
           </div>
           <div class="footerSection" *ngIf="windowWidth>= 900">
-            <div class="footerContainer">
+            <div class="footerContainer linkClassFooter" routerLink="/carrito">
               <mat-icon class="footerIcon itemText">shopping_cart</mat-icon>
               <p class="itemText2">Carrito</p>
             </div>
-            <div class="footerContainer">
+            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData"  routerLink="/login">
               <mat-icon class="footerIcon itemText">person</mat-icon>
               <p class="itemText2">Login</p>
             </div>
-            <div class="footerContainer">
+            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData" routerLink="/registro">
               <mat-icon class="footerIcon itemText">person_add</mat-icon>
               <p class="itemText2">Registrarse</p>
             </div>

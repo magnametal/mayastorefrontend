@@ -16,11 +16,17 @@ moment.locale('es');
 })
 export class HomeComponent {
   constructor(public api: ApiService, public themeService: ThemeServiceService, public productsService: ProductsService, private alertService: AlertServiceService, public loaderService: LoaderService) {}
-
   ngOnInit() {
 
   }
+  mode:any = 'home';
+  totalPages:any;
+  pageEvent:any;
+  page=0;
+  loadingSerach:any = false;
+  query:any='';
   categories:any[]=[];
+  products:any[]=[];
   ngAfterContentInit() {
     this.getProductsInit();
   }
@@ -39,6 +45,43 @@ export class HomeComponent {
         this.loaderService.setLoading(false);
       },
     });
+  }
+  getQuerySearch(page?:any){
+    if (this.query!='') {
+      this.mode = 'search';
+      this.loadingSerach = true;
+      this.api.apiGetRequest(`productos/buscar/${this.query}`, page?page:this.page*10).subscribe({
+        next: (resp: any) => {
+          if (resp.ok) {
+            if (resp.products.length==0) {
+              this.alertService.alertMessage('No hay resultados para esta búsqueda.', 'Mensaje del sistema');
+            }else{
+              this.products = resp.products;
+              this.totalPages = resp.total;
+            }
+          }
+          this.loadingSerach = false;
+        },
+        error: (e: any) => {
+          this.alertService.alertMessage('Error de servidor', 'Error');
+          console.log(e);
+          this.loadingSerach = false;
+        },
+      });
+    }
+  }
+  onPaginateChange(e:any){
+    this.products = [];
+    const index = e.pageIndex*12;
+    this.page = e.pageIndex;
+    this.getQuerySearch(index);
+  }
+  restoreHome(){
+    this.totalPages = 0;
+    this.mode = 'home';
+    this.page = 0;
+    this.query = '';
+    this.products = [];
   }
   getPictureRoute(item:any){
     return environment.URL_IMAGEN + item;

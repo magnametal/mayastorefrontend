@@ -1,0 +1,91 @@
+.contactanosContainer {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #B489D2;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 480px) {
+    .contactanosContainer {
+        width: 89%;
+    }
+}
+
+.mainContentCarrito {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.divBack {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #B489D2;
+}
+
+.inputClassDialogProductArea {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #B489D2;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 6px;
+    font-size: larger;
+}
+
+.inputClassDialogProduct {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #B489D2;
+    height: 42px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 6px;
+}
+
+.inputButtonEnter{
+    width: 100%;
+}
+
+.inputButtonEnter {
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 10px;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 38px;
+    cursor: pointer;
+}
+
+.inputButtonEnter:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #B489D2;
+}
+.inputButtonEnter:hover {
+    background-color: #B489D2;
+    color: #fff;
+    transition: 0.5s;
+}
+.formTitle{
+    margin-bottom: 20px;
+}

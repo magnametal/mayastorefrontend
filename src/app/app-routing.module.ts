@@ -7,7 +7,7 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
-
+import { ContactanosComponent } from './pages/contactanos/contactanos.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,10 @@ const routes: Routes = [
     component: RegistroComponent,
   },
   {
+    path: 'contactanos',
+    component: ContactanosComponent,
+  },
+  {
     path: 'carrito',
     component: CarritoComponent,
   },
@@ -42,7 +46,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-  },
+  }
 ];
 
 @NgModule({
