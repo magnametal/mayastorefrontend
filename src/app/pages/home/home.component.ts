@@ -54,6 +54,7 @@ export class HomeComponent {
         next: (resp: any) => {
           if (resp.ok) {
             if (resp.products.length==0) {
+              this.restoreHome()
               this.alertService.alertMessage('No hay resultados para esta búsqueda.', 'Mensaje del sistema');
             }else{
               this.products = resp.products;
