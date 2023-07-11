@@ -29,12 +29,18 @@ export class AdminComponent {
   products: any[] = [];
   categories: any[] = [];
   catsOrderActive:any = false;
+  queryProducts:any='';
+  loadingSerach:any=false;
   ngOnInit() {
-    if (this.sessionService.userData.role != 'ADMIN_ROLE') {
+    if (this.sessionService.userData) {
+      if (this.sessionService.userData.role != 'ADMIN_ROLE') {
+        this.router.navigateByUrl('/inicio')
+      } else {
+        this.loaderService.setLoading(false);
+        this.getUsers()
+      }
+    }else{
       this.router.navigateByUrl('/inicio')
-    } else {
-      this.loaderService.setLoading(false);
-      this.getUsers()
     }
   }
   ngAfterContentInit() {
@@ -88,6 +94,33 @@ export class AdminComponent {
       },
     });
   }
+  getQueryProductsSearch(){
+      if (this.queryProducts!='') {
+        const tempsProds = this.products;
+        this.products = [];
+        this.loadingSerach = true;
+        this.api.apiGetRequest(`productos/admin/buscar/${this.queryProducts}`).subscribe({
+          next: (resp: any) => {
+            if (resp.ok) {
+              if (resp.products.length==0) {
+                this.products = tempsProds;
+                this.alertService.alertMessage('No hay resultados para esta búsqueda.', 'Mensaje del sistema');
+              }else{
+                this.products = resp.products;
+              }
+              console.log(resp);
+              
+            }
+            this.loadingSerach = false;
+          },
+          error: (e: any) => {
+            this.alertService.alertMessage('Error de servidor', 'Error');
+            console.log(e);
+            this.loadingSerach = false;
+          },
+        });
+      }
+  }
   dialogProduct(mode: any, product?: any) {
     const dialogRef = this.dialog.open(ProductoDialogContent, {
       data: {
@@ -103,11 +136,11 @@ export class AdminComponent {
       this.getProducts();
     });
   }
-  dialogCategory(mode: any, type:any, data?: any, catid?:any) {
+  dialogCategory(mode: any, type:any, data?: any, cat?:any) {
     const dialogRef = this.dialog.open(CategoryDialogContent, {
       data: {
         content: data?data:null,
-        catid: catid?catid:null,
+        category: cat?cat:null,
         type: type,
         mode: mode
       },

@@ -315,6 +315,58 @@
     margin-bottom: 5px;
 }
 
+
+
+
+.SearchBarMain {
+    width: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.inputQuerySearch {
+    margin-top: 30px;
+    width: 70%;
+    background-color: #B489D2;
+    height: 38px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 3px;
+    font-size:16px;
+}
+
+
+.queryButtonDiv {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+.inputButtonSearch {
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 38px;
+    cursor: pointer;
+}
+
+
 @media only screen and (max-width: 680px) {
     .actionsBarNoneProducts{
         flex-direction: column;
@@ -323,4 +375,40 @@
     .actionsBarNoneProductsBlack{
         flex-direction: column;
     }
+    .SearchBarMain{
+        flex-direction: column;
+    }
+    .queryButtonDiv{
+        width: 92%;
+    }
+    .inputQuerySearch{
+        width: 86%;
+    }
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+  }
+.inputButtonSearch:hover {
+    background-color: #B489D2;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.inputButtonSearch:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #B489D2;
+}
+
+
+.loaderContainerSearch{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

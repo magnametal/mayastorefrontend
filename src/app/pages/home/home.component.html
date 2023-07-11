@@ -12,9 +12,11 @@
                 <h4>{{ category.title }}</h4>
             </div>
             <div class="railproducts">
-                <div class="cardProduct" *ngFor="let product of category.products"
-                    [routerLink]="['/producto', product.id]">
-                    <img class="productPic" [src]="product.images[0]" alt="">
+                <div *ngFor="let product of category.products" [routerLink]="['/producto', product.id]">
+                    <div class="spinnerImage" *ngIf="!product.loaded">
+                        <mat-spinner color="accent"></mat-spinner>
+                    </div>
+                    <img [class]="product.loaded?'productPic':'productPicTemp'" (load)="product.loaded = true;" [src]="product.images[0]" alt="">
                 </div>
             </div>
         </div>

@@ -38,6 +38,18 @@
                 <h4>Lista de productos</h4>
                 <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'">Agregar Producto</button>
             </div>
+            <div class="SearchBarMain">
+                <input type="text" [(ngModel)]="queryProducts" class="inputQuerySearch" placeholder="Encuentra un producto...">
+                <div class="queryButtonDiv">
+                    <button mat-icon-button class="editbutton" (click)="getProducts()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                    <button class="inputButtonSearch" (click)="getQueryProductsSearch()">Buscar</button>
+                </div>
+            </div>
+            <div [class]="themeService.darktheme?'loaderContainerSearchDark':'loaderContainerSearch'" *ngIf="loadingSerach">
+                <mat-spinner color="accent"></mat-spinner>
+            </div>
             <div class="ProductsMenuItem" *ngFor="let pro of products;">
                 <img class="ceroContentList" [src]="pro.images[0]" [alt]="'product_'+pro.id"  (click)="dialogProduct('view', pro)">
                 <div class="firstContentList"  (click)="dialogProduct('view', pro)">
@@ -93,13 +105,13 @@
                 </div>
                 <div [class]="themeService.darktheme?'actionsBarNoneProductsBlack':'actionsBarNoneProducts'" *ngIf="cat.subcategories.length==0">
                     <p *ngIf="cat.subcategories.length==0">Sin subcategorías</p>
-                    <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat.id)">Agregar Subcategoría</button>
+                    <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat)">Agregar Subcategoría</button>
                 </div>
                 <div [class]="themeService.darktheme?'ProductsMenuItemSubcatBlack':'ProductsMenuItemSubcat'" *ngIf="cat.title!='Ninguna' && cat.subcategories.length!=0">
                     <div class="actionsBarProducts">
                         <h4>Subcategorías</h4>
                         <div class="actions">
-                            <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat.id)">Agregar Subcategoría</button>
+                            <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" *ngIf="!cat.subcatEdit" (click)="dialogCategory('new', 'subcategory', false, cat)">Agregar Subcategoría</button>
                             <button mat-icon-button *ngIf="!cat.subcatEdit" (click)="cat.subcatEdit=true;">
                                 <mat-icon>low_priority</mat-icon>
                             </button>

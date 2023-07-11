@@ -52,7 +52,10 @@
         <div class="productsMainItemRecommended">
             <div class="railproductsRecommended">
                 <div *ngFor="let product of recommended"  [routerLink]="['/producto', product.id]">
-                    <img class="productPicRecommended" [src]="product.images[0]" alt="">
+                    <div class="spinnerImage" *ngIf="!product.loaded">
+                        <mat-spinner color="accent"></mat-spinner>
+                    </div>
+                    <img  [class]="product.loaded?'productPicRecommended':'productPicRecommendedTemp'" (load)="product.loaded = true;" [src]="product.images[0]" alt="">
                 </div>
             </div>
         </div>

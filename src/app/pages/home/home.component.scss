@@ -19,6 +19,17 @@
     cursor: pointer;
 }
 
+.productPicTemp{
+    position: absolute;
+    width: auto;
+    height: 240px;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
 .categoryDiv {
     width: 96%;
     margin: 10px;
@@ -111,27 +122,6 @@
     color: #B489D2;
 }
 
-@media only screen and (max-width: 480px) {
-    .homeConteiner {
-        width: 100%;
-    }
-
-    .productPic {
-        width: 92vw;
-        height: auto;
-    }
-
-    .categoryDiv {
-        justify-content: center;
-        margin-left: 0;
-        padding: 0;
-    }
-
-    .railproducts {
-        height: auto;
-        width: 100%;
-    }
-}
 
 .divBack{
     width: 100%;
@@ -200,5 +190,44 @@
 @media only screen and (max-width: 480px) {
     .categoryItemList {
         height: auto;
+    }
+}
+
+.spinnerImage{
+    height: 240px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 3px;
+    border-color: #B489D2;
+    border-radius: 7px;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .homeConteiner {
+        width: 100%;
+    }
+
+    .productPic {
+        width: 92vw;
+        height: auto;
+    }
+
+    .spinnerImage{
+        width: 92vw;
+        height: 400px; 
+    }
+
+    .categoryDiv {
+        justify-content: center;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    .railproducts {
+        height: auto;
+        width: 100%;
     }
 }
