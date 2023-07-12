@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 
 moment.locale('es');
 
@@ -25,7 +26,8 @@ export class RegistroComponent {
     private router: Router, 
     private locastorageservice: LocalStorageServiceService,
     private alertService: AlertServiceService,
-    public loaderService: LoaderService
+    public loaderService: LoaderService,
+    private errorsService: ErrorsService
   ) {}
   countries:any = [];
   country:any = '+58';
@@ -55,6 +57,8 @@ export class RegistroComponent {
         if (resp.ok) {
           this.locastorageservice.saveData('countries', JSON.stringify(resp.countries));
           this.countries = resp.countries;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
         }
       },
       error: (e: any) => {
@@ -84,6 +88,8 @@ export class RegistroComponent {
                 this.sesionService.checkLoguedInfo();
                 this.reset();
                 this.router.navigate(['inicio']);
+              }else{
+                this.errorsService.catchErrorCodes(resp.code)
               }
               this.loaderService.setLoading(false);
             },

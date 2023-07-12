@@ -10,6 +10,7 @@ import { AlertServiceService } from './services/alert-service.service';
 import { LocalStorageServiceService } from './services/local-storage-service.service';
 import { CarritoServiceService } from './services/carrito-service.service';
 import { filter } from 'rxjs/operators';
+import { CategoriesService } from './services/categories.service';
 
 
 @UntilDestroy()
@@ -33,12 +34,13 @@ export class AppComponent {
     private alertService: AlertServiceService,
     private api: ApiService,
     private locastorageservice: LocalStorageServiceService,
-    private carritoService: CarritoServiceService
+    private carritoService: CarritoServiceService,
+    public categoriesService: CategoriesService
   ) {}
 
   async ngOnInit() {
     this.sesionService.checkLoguedInfo();
-    this.getCategories()
+    this.categoriesService.getCategories()
     this.carritoService.loadCarrito();
     const theme = await this.locastorageservice.getData('theme');
     if (theme) {
@@ -49,21 +51,6 @@ export class AppComponent {
         this.themeService.darktheme=true;
       }
     }
-  }
-  getCategories(){
-    this.api.apiGetRequest(`categorias`).subscribe({
-      next: (resp: any) => {
-        console.log(resp);
-        
-        if (resp.ok) {
-          this.categories = resp.categories;
-        }
-      },
-      error: (e: any) => {
-        this.alertService.alertMessage('Error de servidor', 'Error');
-        console.log(e);
-      },
-    });
   }
   verifyRoute(actualRoute:any, wishRoute:any){
     if (actualRoute==wishRoute) {
@@ -103,5 +90,8 @@ export class AppComponent {
     }else{
       return false;
     }
+  }
+  goToExternalURL(url:any){
+    window.open(url, "_blank");
   }
 }

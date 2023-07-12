@@ -8,6 +8,7 @@ import { LocalStorageServiceService } from 'src/app/services/local-storage-servi
 import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 
 moment.locale('es');
 
@@ -25,7 +26,8 @@ export class LoginComponent {
     private locastorageservice: LocalStorageServiceService,
     private sesionService: SessionService,
     private router: Router,
-    public loaderService: LoaderService
+    public loaderService: LoaderService,
+    private errorsService: ErrorsService
   ) {}
   email:any="";
   password:any="";
@@ -51,6 +53,8 @@ export class LoginComponent {
             this.sesionService.checkLoguedInfo();
             this.reset();
             this.router.navigate(['inicio']);
+          }else{
+            this.errorsService.catchErrorCodes(resp.code)
           }
           this.loaderService.setLoading(false);
         },

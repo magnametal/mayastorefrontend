@@ -6,6 +6,7 @@ import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 moment.locale('es');
 
 @Component({
@@ -15,7 +16,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
-  constructor(public api: ApiService, public themeService: ThemeServiceService, public productsService: ProductsService, private alertService: AlertServiceService, public loaderService: LoaderService) {}
+  constructor(private errorsService:ErrorsService, public api: ApiService, public themeService: ThemeServiceService, public productsService: ProductsService, private alertService: AlertServiceService, public loaderService: LoaderService) {}
   ngOnInit() {
 
   }
@@ -36,6 +37,8 @@ export class HomeComponent {
       next: (resp: any) => {
         if (resp.ok) {
           this.categories = resp.categories;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
         }
         this.loaderService.setLoading(false);
       },
@@ -60,6 +63,8 @@ export class HomeComponent {
               this.products = resp.products;
               this.totalPages = resp.total;
             }
+          }else{
+            this.errorsService.catchErrorCodes(resp.code)
           }
           this.loadingSerach = false;
         },

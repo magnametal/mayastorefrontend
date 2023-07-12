@@ -22,7 +22,7 @@
       <div *ngIf="verifyAdmin()" [class]="verifyRoute(router.url, '/admin')" (click)="drawer.toggle();" routerLink="/admin">
         <p class="itemText">Adminpanel</p>
       </div>
-      <div *ngFor="let cat of categories;" class="dinamicitemClass">
+      <div *ngFor="let cat of categoriesService.categories;" class="dinamicitemClass">
         <ng-template #disabledItem>
           <div (click)="!cat.opened?cat.opened=true:cat.opened=false" [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')">
             <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true" class="itemText">{{cat.title}}</p>
@@ -79,10 +79,10 @@
     </div>
     <div [class]="themeService.darktheme?'footerBlack':'footer'">
       <div class="footerIconsContainer">
-        <button mat-icon-button aria-label="Example icon-button with menu icon">
+        <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="goToExternalURL('https://instagram.com/creacionesmaya1111?igshid=YmM0MjE2YWMzOA==')">
           <img src="./assets/instagram.svg" alt="insta" class="instagramLogo">
         </button>
-        <button mat-icon-button aria-label="Example icon-button with menu icon">
+        <button mat-icon-button aria-label="Example icon-button with menu icon" routerLink="/contactanos">
           <img src="./assets/email.png" alt="insta2" class="emailLogo">
         </button>
       </div>

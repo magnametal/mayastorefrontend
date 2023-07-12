@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 
 moment.locale('es');
 
@@ -18,7 +19,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None,
 })
 export class CategoriaComponent {
-  constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public productsService: ProductsService, private route: ActivatedRoute, private alertService: AlertServiceService, public loaderService: LoaderService) {}
+  constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public productsService: ProductsService, private route: ActivatedRoute, private alertService: AlertServiceService, public loaderService: LoaderService, private errorsService: ErrorsService) {}
   category: any;
   subcategory: any;
   subcategories: any[]=[];
@@ -46,6 +47,8 @@ export class CategoriaComponent {
           this.category = resp.category;
           this.subcategory = false;
           this.onlycats = resp.onlycats;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
         }
         this.loaderService.setLoading(false);
       },
@@ -65,6 +68,8 @@ export class CategoriaComponent {
           this.subcategory = resp.subcategory;
           this.category = resp.category;
           this.onlycats = true;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
         }
         this.loaderService.setLoading(false);
       },

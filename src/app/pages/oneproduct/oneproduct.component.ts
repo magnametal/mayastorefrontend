@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LocalStorageServiceService } from 'src/app/services/local-storage-service.service';
+import { ErrorsService } from 'src/app/services/errors.service';
 
 
 moment.locale('es');
@@ -21,7 +22,7 @@ moment.locale('es');
   encapsulation: ViewEncapsulation.None
 })
 export class OneProductComponent {
-  constructor(public api: ApiService, public loaderService: LoaderService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, private router: Router, public productService: ProductsService, private alertService: AlertServiceService, private localStorageService: LocalStorageServiceService) { }
+  constructor(public api: ApiService, public loaderService: LoaderService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, private route: ActivatedRoute, private router: Router, public productService: ProductsService, private alertService: AlertServiceService, private localStorageService: LocalStorageServiceService, private errorsService: ErrorsService) { }
   quantity:any=1;
   actualIndex:any = 0;
   animateAction:any = true;
@@ -47,6 +48,8 @@ export class OneProductComponent {
         if (resp.ok) {
           this.product = resp.product;
           this.recommended = resp.recommended;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
         }
         this.loaderService.setLoading(false);
         document.getElementsByTagName('mat-drawer-content')[0].scrollTo(0, 0)
