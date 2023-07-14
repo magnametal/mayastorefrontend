@@ -8,7 +8,7 @@ import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
-
+import { VerifyComponent } from './pages/verify/verify.component';
 const routes: Routes = [
   {
     path: '',
@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+  },
+  {
+    path: 'verify',
+    component: VerifyComponent,
   }
 ];
 

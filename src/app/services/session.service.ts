@@ -11,7 +11,6 @@ export class SessionService {
   async checkLoguedInfo (){
     const mytoken = await this.localstorageService.getData('token');    
     if (mytoken) {
-      console.log("Reestableciendo Sesión Guardada");
       this.token = mytoken;
       const myUserData = await this.localstorageService.getData('userData');
       this.userData = JSON.parse(myUserData)

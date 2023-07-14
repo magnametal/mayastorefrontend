@@ -7,10 +7,10 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div [class]="themeService.darktheme?'sidenavProfileDark':'sidenavProfile'" *ngIf="this.sesionService.userData">
-      <img [src]="this.sesionService.userData.img" class="avatarClass" alt="imageAvatar">
-      {{ this.emailPrivaticy(this.sesionService.userData.email) }}
-      <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData">
+    <div [class]="themeService.darktheme?'sidenavProfileDark':'sidenavProfile'" *ngIf="sesionService.userData">
+      <img [src]="this.sesionService.userData.img" class="avatarClass" alt="imageAvatar" *ngIf="sesionService.userData.status==1">
+      <p *ngIf="sesionService.userData.status==1">{{ this.emailPrivaticy(this.sesionService.userData.email) }}</p>
+      <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData.status==1">
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">logout</mat-icon>
         <p class="itemText">Cerrar sesión</p>
       </div>

@@ -32,7 +32,7 @@ export class LoginComponent {
   email:any="";
   password:any="";
   ngOnInit() {
-
+    this.loaderService.setLoading(false);
   }
   ngAfterContentInit() {
     if (this.sesionService.userData) {
@@ -48,11 +48,16 @@ export class LoginComponent {
       }).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
-            this.locastorageservice.saveData('token', resp.token);
-            this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
-            this.sesionService.checkLoguedInfo();
-            this.reset();
-            this.router.navigate(['inicio']);
+            if (resp.userData.status==0) {
+              this.sesionService.userData=resp.userData;
+              this.newVerify(resp.userData.email);
+            }else{
+              this.locastorageservice.saveData('token', resp.token);
+              this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
+              this.sesionService.checkLoguedInfo();
+              this.reset();
+              this.router.navigate(['inicio']);
+            }
           }else{
             this.errorsService.catchErrorCodes(resp.code)
           }
@@ -67,6 +72,26 @@ export class LoginComponent {
     }else{
       this.alertService.alertMessage('No puede haber campos vacíos por favor verifique', 'Campos no válidos');
     }
+  }
+  newVerify(email:any){
+    this.loaderService.setLoading(true);
+    this.api.apiPostRequest(`usuarios/otro/verify`, {
+      email
+    }).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.router.navigate(['verify']);
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
+        }
+        this.loaderService.setLoading(false);
+      },
+      error: (e: any) => {
+        this.alertService.alertMessage('Error de servidor', 'Error');
+        console.log(e);
+        this.loaderService.setLoading(false);
+      },
+    });
   }
   reset(){
     this.email = '';

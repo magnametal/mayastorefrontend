@@ -14,6 +14,7 @@ import { OneProductComponent } from './pages/oneproduct/oneproduct.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
+import { VerifyComponent } from './pages/verify/verify.component';
 
 
 // Componentes
@@ -51,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProductoDialogContent,
     CategoryDialogContent,
     ContactanosComponent,
+    VerifyComponent,
     AdminComponent
   ],
   imports: [

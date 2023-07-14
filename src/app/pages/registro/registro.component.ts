@@ -37,7 +37,7 @@ export class RegistroComponent {
   phone:any = '';
   features:any = false;
   ngOnInit() {
-
+    this.loaderService.setLoading(false);
   }
   ngAfterContentInit() {
     if (this.sesionService.userData) {
@@ -82,12 +82,14 @@ export class RegistroComponent {
             code: "+"+this.countries[index].isoCode
           }).subscribe({
             next: (resp: any) => {
+              console.log(resp);
+              
               if (resp.ok) {
-                this.locastorageservice.saveData('token', resp.token);
-                this.locastorageservice.saveData('userData', JSON.stringify(resp.user));
-                this.sesionService.checkLoguedInfo();
-                this.reset();
-                this.router.navigate(['inicio']);
+                this.sesionService.userData = {
+                  email: resp.email,
+                  status: 0
+                }
+                this.router.navigate(['verify']);
               }else{
                 this.errorsService.catchErrorCodes(resp.code)
               }

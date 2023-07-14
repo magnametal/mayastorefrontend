@@ -1,0 +1,35 @@
+<div class="verifyMainContent">
+    <div class="mainVerifydiv">
+        <div [class]="themeService.darktheme?'codesInfoDark':'codesInfo'">
+            <h3>Código de verificación</h3>
+            <p *ngIf="sesionService.userData">Se ha enviado a tu correo electrónico ({{ emailPrivaticy(sesionService.userData.email) }}) un código de verificación con el cual podrás activar tu cuenta.
+                Recuerda
+                revisar la bandeja de spam. El código es válido durante 30 minutos.</p>
+        </div>
+        <div class="inputClassRail">
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code1"
+                (input)="change1($event)" (focus)="code1=''" #codeel1 />
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code2"
+                (input)="change2($event)" (focus)="code2=''" #codeel2 />
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code3"
+                (input)="change3($event)" (focus)="code3=''" #codeel3 />
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code4"
+                (input)="change4($event)" (focus)="code4=''" #codeel4 />
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code5"
+                (input)="change5($event)" (focus)="code5=''" #codeel5 />
+            <input type="number" (paste)="clipboard($event)" maxlength="1" min="0" max="9" class="inputClassNumber" [(ngModel)]="code6"
+                (input)="change6($event)" (focus)="code6=''" #codeel6 />
+        </div>
+        <div>
+            <div class="inputButton" (click)="verify()">
+                Verificar Cuenta
+            </div>
+            <div class="inputButtonWait" *ngIf="!resendAvailable">
+                Reenviar ({{minutes}}:{{seconds}})
+            </div>
+            <div class="inputButton" *ngIf="resendAvailable" (click)="resend()">
+                Renviar Código
+            </div>
+        </div>
+    </div>
+</div>
