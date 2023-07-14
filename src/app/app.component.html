@@ -50,14 +50,15 @@
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>
         <p class="itemText">Carrito</p>
       </div>
-      <div [class]="verifyRoute(router.url, '/login')" (click)="drawer.toggle()" routerLink="/login" *ngIf="!sesionService.userData">
-        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person</mat-icon>
-        <p class="itemText">Login</p>
-      </div>
-      <div [class]="verifyRoute(router.url, '/registro')" (click)="drawer.toggle()" routerLink="/registro" *ngIf="!sesionService.userData">
-        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person_add</mat-icon>
-        <p class="itemText">Registrarse</p>
-      </div>
+        <div [class]="verifyRoute(router.url, '/login')" (click)="drawer.toggle()" routerLink="/login"  *ngIf="!sesionService.userData || sesionService.userData.status!=1">
+          <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person</mat-icon>
+          <p class="itemText">Login</p>
+        </div>
+        <div [class]="verifyRoute(router.url, '/registro')" (click)="drawer.toggle()" routerLink="/registro"  *ngIf="!sesionService.userData || sesionService.userData.status!=1">
+          <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person_add</mat-icon>
+          <p class="itemText">Registrarse</p>
+        </div>
+      
       <div [class]="themeService.darktheme?'switchContainerDark':'switchContainer'">
         <mat-icon>sunny</mat-icon>
         <mat-slide-toggle (change)="toggle($event)" [(ngModel)]="themeService.darktheme" class="toggle"></mat-slide-toggle>

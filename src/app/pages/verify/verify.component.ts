@@ -60,6 +60,7 @@ export class VerifyComponent {
   }
 
   counter() {
+    this.loaderService.setLoading(false);
     this.resendAvailable = false;
     var date = new Date('2020-01-01 00:03');
     var padLeft = (n: any) => "00".substring(0, "00".length - n.length) + n;
@@ -121,8 +122,8 @@ export class VerifyComponent {
     parseInt(this.code6) < 0 ? this.code6 = 0 : parseInt(this.code6); parseInt(this.code6) > 9 ? this.code6 = 0 : parseInt(this.code6);
   }
   verify(){
-    const code = this.code1+''+this.code2+''+this.code3+''+this.code4+''+this.code5+''+this.code6;
     this.loaderService.setLoading(true);
+    const code = this.code1+''+this.code2+''+this.code3+''+this.code4+''+this.code5+''+this.code6;
     this.api.apiPostRequest(`usuarios/verify`, {
       email: this.sesionService.userData.email,
       code: code
@@ -183,8 +184,24 @@ export class VerifyComponent {
       });    
     }
   }
-  resend() {
-    this.counter()
+  resend(email:any){
+    this.api.apiPostRequest(`usuarios/otro/verify`, {
+      email
+    }).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.counter();
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
+        }
+        this.loaderService.setLoading(false);
+      },
+      error: (e: any) => {
+        this.alertService.alertMessage('Error de servidor', 'Error');
+        console.log(e);
+        this.loaderService.setLoading(false);
+      },
+    });
   }
   emailPrivaticy(email:any){
     return email.substring(0, 2)+'****'+email.substring(14);

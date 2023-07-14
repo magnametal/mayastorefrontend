@@ -36,7 +36,9 @@ export class LoginComponent {
   }
   ngAfterContentInit() {
     if (this.sesionService.userData) {
-      this.router.navigate(['inicio']);
+      if (this.sesionService.userData.status==1) {
+        this.router.navigate(['inicio']);
+      }
     }
   }
   logIn(){
@@ -50,18 +52,19 @@ export class LoginComponent {
           if (resp.ok) {
             if (resp.userData.status==0) {
               this.sesionService.userData=resp.userData;
-              this.newVerify(resp.userData.email);
+              this.router.navigate(['verify']);
             }else{
               this.locastorageservice.saveData('token', resp.token);
               this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
               this.sesionService.checkLoguedInfo();
               this.reset();
               this.router.navigate(['inicio']);
+              this.loaderService.setLoading(false);
             }
           }else{
             this.errorsService.catchErrorCodes(resp.code)
+            this.loaderService.setLoading(false);
           }
-          this.loaderService.setLoading(false);
         },
         error: (e: any) => {
           this.alertService.alertMessage('Datos no válidos', 'Error de verificación');
@@ -72,26 +75,6 @@ export class LoginComponent {
     }else{
       this.alertService.alertMessage('No puede haber campos vacíos por favor verifique', 'Campos no válidos');
     }
-  }
-  newVerify(email:any){
-    this.loaderService.setLoading(true);
-    this.api.apiPostRequest(`usuarios/otro/verify`, {
-      email
-    }).subscribe({
-      next: (resp: any) => {
-        if (resp.ok) {
-          this.router.navigate(['verify']);
-        }else{
-          this.errorsService.catchErrorCodes(resp.code)
-        }
-        this.loaderService.setLoading(false);
-      },
-      error: (e: any) => {
-        this.alertService.alertMessage('Error de servidor', 'Error');
-        console.log(e);
-        this.loaderService.setLoading(false);
-      },
-    });
   }
   reset(){
     this.email = '';
