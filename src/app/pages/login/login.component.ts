@@ -31,6 +31,8 @@ export class LoginComponent {
   ) {}
   email:any="";
   password:any="";
+  hide1:any = true;
+
   ngOnInit() {
     this.loaderService.setLoading(false);
   }

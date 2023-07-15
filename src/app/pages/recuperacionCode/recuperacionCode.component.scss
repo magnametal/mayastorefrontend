@@ -1,0 +1,124 @@
+.verifyMainContent {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 540px;
+    flex-direction: column;
+}
+.mainVerifydiv{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.inputClassNumber{
+    margin-top: 30px;
+    width: 8px;
+    background-color: #B489D2;
+    height: 28px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 3px;
+}
+
+.inputClassRail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.codesInfo{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.codesInfoDark{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.inputButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5px;
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #B489D2;
+    color: #B489D2;
+    border-radius: 10px;
+    width: 220px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.inputButton:hover {
+    background-color: #B489D2;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.inputButton:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #B489D2;
+}
+
+.inputButtonWait{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5px;
+    background-color: #fff;
+    border: solid 3px;
+    border-color: #a3a3a3;
+    color: #a3a3a3;
+    border-radius: 10px;
+    width: 220px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.loaderVerifyContent{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

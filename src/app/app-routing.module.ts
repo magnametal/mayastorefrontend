@@ -9,6 +9,10 @@ import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
 import { VerifyComponent } from './pages/verify/verify.component';
+import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
+import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacionCode.component'
+import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
+
 const routes: Routes = [
   {
     path: '',
@@ -50,6 +54,18 @@ const routes: Routes = [
   {
     path: 'verify',
     component: VerifyComponent,
+  },
+  {
+    path: 'recuperacion',
+    component: RecuperacionComponent,
+  },
+  {
+    path: 'recuperacion/code/:email',
+    component: RecuperacionCodeComponent,
+  },
+  {
+    path: 'recuperacion/key/:email/:key',
+    component: RecuperacionKeyComponent,
   }
 ];
 

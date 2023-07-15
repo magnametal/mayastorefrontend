@@ -136,3 +136,17 @@ a:active {
     text-decoration: none;
     color: #B489D2;
 }
+
+.inputpasswordVisible{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; 
+    margin-left: -10px;
+}
+
+.eyeInput{
+    margin-left: -35px;
+    color: #fff;
+    cursor: pointer;
+}

@@ -15,6 +15,7 @@ import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
 import { VerifyComponent } from './pages/verify/verify.component';
+import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacionCode.component'
 
 
 // Componentes
@@ -39,6 +40,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+
+import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
+import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +58,9 @@ import { HttpClientModule } from '@angular/common/http';
     ProductoDialogContent,
     CategoryDialogContent,
     ContactanosComponent,
+    RecuperacionComponent,
+    RecuperacionCodeComponent,
+    RecuperacionKeyComponent,
     VerifyComponent,
     AdminComponent
   ],

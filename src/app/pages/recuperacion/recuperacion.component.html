@@ -1,0 +1,15 @@
+<div class="verifyMainContent" *ngIf="!loaderService.loading">
+    <div class="mainDivRecuperacion">
+        <div [class]="themeService.darktheme?'divRecuperacionContentCenterDark':'divRecuperacionContentCenter'">
+            <h2 class="textColorsRecup">Recuperar clave de acceso</h2>
+            <p class="textColorsRecup">
+                Ingresa tu dirección de correo electrónico para recuperar tu información de acceso de Creaciones Maya.
+            </p>
+            <input type="text" [(ngModel)]="email" class="inputClass" placeholder="Email">
+            <button class="inputButton" (click)="recuperar()">Confirmar</button>
+        </div>
+    </div>
+</div>
+<div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
+    <mat-spinner color="accent"></mat-spinner>
+</div>

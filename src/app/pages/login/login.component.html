@@ -4,13 +4,16 @@
         <p>Login</p>
         <div class="inputsClass">
             <input type="text" [(ngModel)]="email" class="inputClass" placeholder="Email">
-            <input type="password" [(ngModel)]="password" class="inputClass" placeholder="Clave">
+            <div class="inputpasswordVisible">
+                <input [type]="hide1?'password':'text'" [(ngModel)]="password" class="inputClass" placeholder="Clave">
+                <mat-icon matSuffix class="eyeInput" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
         </div>
         <div class="inputsClass">
             <button class="inputButton" (click)="logIn()">Ingresar</button>
         </div>
         <div class="linksContainer">
-            <a routerLink="/inicio"><p>¿Olvidaste tu clave?</p></a>
+            <a routerLink="/recuperacion"><p>¿Olvidaste tu clave?</p></a>
             <a routerLink="/registro" class="enlaceScundario"><p>¿No tienes cuenta? <strong>Regístrate aquí</strong></p></a>
         </div>
     </div>

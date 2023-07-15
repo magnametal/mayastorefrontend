@@ -3,8 +3,14 @@
         <p class="title">Registro</p>
         <div class="inputsClass">
             <input type="text" class="inputClass" [(ngModel)]="email" placeholder="Email">
-            <input type="password" class="inputClass" [(ngModel)]="password" placeholder="Clave">
-            <input type="password" class="inputClass" [(ngModel)]="password2"  placeholder="Repetir clave">
+            <div class="inputpasswordVisible">
+                <input [type]="hide1?'password':'text'" [(ngModel)]="password" class="inputClass" placeholder="Clave">
+                <mat-icon matSuffix class="eyeInput" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
+            <div class="inputpasswordVisible">
+                <input [type]="hide2?'password':'text'" [(ngModel)]="password2" class="inputClass" placeholder="Repite tu clave">
+                <mat-icon matSuffix class="eyeInput" (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
             <div class="inputsClassNumber">
                 <select name="countries" class="inputClassCode" [(ngModel)]="country" *ngIf="countries">
                     <option *ngFor="let country of countries;" [value]="'+'+country.phonecode">{{country.isoCode+'  +'+country.phonecode}}</option>

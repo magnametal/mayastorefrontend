@@ -36,6 +36,8 @@ export class RegistroComponent {
   password2:any = '';
   phone:any = '';
   features:any = false;
+  hide1:any = true;
+  hide2:any = true;
   ngOnInit() {
     this.loaderService.setLoading(false);
   }

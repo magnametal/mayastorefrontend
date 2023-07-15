@@ -173,3 +173,17 @@ input[type=number] {
     margin-top: 10px;
     font-size: x-small;
 }
+
+.inputpasswordVisible{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; 
+    margin-left: -10px;
+}
+
+.eyeInput{
+    margin-left: -35px;
+    color: #fff;
+    cursor: pointer;
+}
