@@ -152,17 +152,18 @@ p {
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ccc;
+  color: #e8d7ff;
   opacity: 1;
   /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #ccc;
+  color: #e8d7ff;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #ccc;
+  color: #e8d7ff;
 }
+

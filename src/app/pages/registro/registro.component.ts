@@ -81,7 +81,7 @@ export class RegistroComponent {
             phone: this.phone,
             features: this.features,
             country: this.countries[index].name,
-            code: "+"+this.countries[index].isoCode
+            code: "+"+this.countries[index].phonecode
           }).subscribe({
             next: (resp: any) => {
               console.log(resp);

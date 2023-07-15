@@ -1,0 +1,47 @@
+<div class="verifyMainContent" *ngIf="!loaderService.loading">
+    <div [class]="themeService.darktheme?'divContentProfileDark':'divContentProfile'">
+        <img class="imgAvatarProfile" [src]="sesionService.userData.img" alt="avatarProfile">
+        <div class="infoContentProfile">
+            <p>{{ sesionService.userData.email }}</p>
+            <p>{{ sesionService.userData.country }}</p>
+        </div>
+    </div>
+    <div [class]="themeService.darktheme?'divContentProfileDark':'divContentProfile'">
+        <h2 class="textColorsRecup">Teléfono</h2>
+        <p class="textColorsRecup">
+            Este número de teléfono es donde se contactará el administrador en caso de que realices alguna compra.
+        </p>
+        <div class="inputsClassNumberProfile">
+            <select name="countries" class="inputClassCodeProfile" [(ngModel)]="code" *ngIf="countries">
+                <option *ngFor="let country of countries;" [value]="'+'+country.phonecode">{{country.isoCode+'  +'+country.phonecode}}</option>
+            </select>
+            <input type="text" [(ngModel)]="phone" class="inputClassProfile" placeholder="Teléfono">
+        </div>
+        <button class="inputButton">Cambiar teléfono</button>
+    </div>
+    <div [class]="themeService.darktheme?'divContentProfileDark':'divContentProfile'">
+        <h2 class="textColorsRecup">Cambiar mi clave</h2>
+        <div class="inputpasswordVisible">
+            <input [type]="hide0?'password':'text'" [(ngModel)]="oldpassword" class="inputClassProfile"
+                placeholder="Clave Actual">
+            <mat-icon matSuffix class="eyeInput" (click)="hide0 = !hide0">{{hide0 ? 'visibility_off' :
+                'visibility'}}</mat-icon>
+        </div>
+        <div class="inputpasswordVisible">
+            <input [type]="hide1?'password':'text'" [(ngModel)]="password" class="inputClassProfile"
+                placeholder="Nueva Clave">
+            <mat-icon matSuffix class="eyeInput" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' :
+                'visibility'}}</mat-icon>
+        </div>
+        <div class="inputpasswordVisible">
+            <input [type]="hide2?'password':'text'" [(ngModel)]="password2" class="inputClassProfile"
+                placeholder="Repite tu nueva clave">
+            <mat-icon matSuffix class="eyeInput" (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' :
+                'visibility'}}</mat-icon>
+        </div>
+        <button class="inputButton">Cambiar clave</button>
+    </div>
+</div>
+<div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
+    <mat-spinner color="accent"></mat-spinner>
+</div>

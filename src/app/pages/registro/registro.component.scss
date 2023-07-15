@@ -88,7 +88,7 @@
     flex-direction: column;
 }
 
-.inputButton {
+.inputButtonLogin {
     margin-top: 20px;
     background-color: #fff;
     border: solid 3px;
@@ -102,13 +102,13 @@
     cursor: pointer;
 }
 
-.inputButton:hover {
+.inputButtonLogin:hover {
     background-color: #B489D2;
     color: #fff;
     transition: 0.5s;
 }
 
-.inputButton:active {
+.inputButtonLogin:active {
     background-color: #fff;
     border-color: #fff;
     color: #B489D2;

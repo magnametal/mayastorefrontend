@@ -1,14 +1,21 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true" autosize>
   <mat-drawer #drawer [class]="themeService.darktheme?'example-sidenavBlack':'example-sidenav'" mode="over">
     <div class="sidenavTitles">
-      <img src="./assets/logo_small.png" class="menuLogoSideNav" alt="logo1">
+      <img src="./assets/logo_small.png" (click)="drawer.toggle()" class="menuLogoSideNav" alt="logo1" routerLink="/inicio">
       <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" color="accent"
         (click)="drawer.toggle()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
     <div [class]="themeService.darktheme?'sidenavProfileDark':'sidenavProfile'" *ngIf="sesionService.userData">
-      <img [src]="this.sesionService.userData.img" class="avatarClass" alt="imageAvatar" *ngIf="sesionService.userData.status==1">
+
+      <button mat-icon-button color="accent"
+        [class]="themeService.darktheme?'menuIconDark itemText profilebarIconSettings':'menuIcon itemText profilebarIconSettings'"
+        (click)="drawer.toggle()" routerLink="/perfil">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <img [src]="this.sesionService.userData.img" class="avatarClass" alt="imageAvatar"
+        *ngIf="sesionService.userData.status==1">
       <p *ngIf="sesionService.userData.status==1">{{ this.emailPrivaticy(this.sesionService.userData.email) }}</p>
       <div class="logoutClass" (click)="closesession(); drawer.toggle()" *ngIf="sesionService.userData.status==1">
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">logout</mat-icon>
@@ -19,23 +26,32 @@
       <div [class]="verifyRoute(router.url, '/inicio')" (click)="drawer.toggle();" routerLink="/inicio">
         <p class="itemText">Inicio</p>
       </div>
-      <div *ngIf="verifyAdmin()" [class]="verifyRoute(router.url, '/admin')" (click)="drawer.toggle();" routerLink="/admin">
+      <div *ngIf="verifyAdmin()" [class]="verifyRoute(router.url, '/admin')" (click)="drawer.toggle();"
+        routerLink="/admin">
         <p class="itemText">Adminpanel</p>
       </div>
       <div *ngFor="let cat of categoriesService.categories;" class="dinamicitemClass">
         <ng-template #disabledItem>
-          <div (click)="!cat.opened?cat.opened=true:cat.opened=false" [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')">
-            <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true" class="itemText">{{cat.title}}</p>
-            <mat-icon >arrow_drop_down</mat-icon>
+          <div (click)="!cat.opened?cat.opened=true:cat.opened=false"
+            [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')">
+            <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true" class="itemText">
+              {{cat.title}}</p>
+            <mat-icon>arrow_drop_down</mat-icon>
           </div>
-          <div *ngIf="cat.opened" class="externalDiv" >
-            <div [class]="verifySubmenuRoute(router.url, '/categoria/'+cat.id+'/'+subcat.id)+' internalSubCatDiv animate__animated animate__fadeInLeft animate__faster'" *ngFor="let subcat of cat.subcategories;" [routerLink]="'/categoria/'+cat.id+'/'+subcat.id" [replaceUrl]="true" >
+          <div *ngIf="cat.opened" class="externalDiv">
+            <div
+              [class]="verifySubmenuRoute(router.url, '/categoria/'+cat.id+'/'+subcat.id)+' internalSubCatDiv animate__animated animate__fadeInLeft animate__faster'"
+              *ngFor="let subcat of cat.subcategories;" [routerLink]="'/categoria/'+cat.id+'/'+subcat.id"
+              [replaceUrl]="true">
               <p class="itemTextSubcat">{{subcat.title}}</p>
             </div>
           </div>
         </ng-template>
-        <div *ngIf="cat.subcategories.length==0; else disabledItem" [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')" (click)="drawer.toggle();" [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true">
-          <p  (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" class="itemText">{{cat.title}}</p>
+        <div *ngIf="cat.subcategories.length==0; else disabledItem"
+          [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')" (click)="drawer.toggle();"
+          [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true">
+          <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" class="itemText">
+            {{cat.title}}</p>
         </div>
       </div>
       <span class="divider"></span>
@@ -50,18 +66,21 @@
         <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">shopping_cart</mat-icon>
         <p class="itemText">Carrito</p>
       </div>
-        <div [class]="verifyRoute(router.url, '/login')" (click)="drawer.toggle()" routerLink="/login"  *ngIf="!sesionService.userData || sesionService.userData.status!=1">
-          <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person</mat-icon>
-          <p class="itemText">Login</p>
-        </div>
-        <div [class]="verifyRoute(router.url, '/registro')" (click)="drawer.toggle()" routerLink="/registro"  *ngIf="!sesionService.userData || sesionService.userData.status!=1">
-          <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person_add</mat-icon>
-          <p class="itemText">Registrarse</p>
-        </div>
-      
+      <div [class]="verifyRoute(router.url, '/login')" (click)="drawer.toggle()" routerLink="/login"
+        *ngIf="!sesionService.userData || sesionService.userData.status!=1">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person</mat-icon>
+        <p class="itemText">Login</p>
+      </div>
+      <div [class]="verifyRoute(router.url, '/registro')" (click)="drawer.toggle()" routerLink="/registro"
+        *ngIf="!sesionService.userData || sesionService.userData.status!=1">
+        <mat-icon [class]="themeService.darktheme?'menuIconDark itemText':'menuIcon itemText'">person_add</mat-icon>
+        <p class="itemText">Registrarse</p>
+      </div>
+
       <div [class]="themeService.darktheme?'switchContainerDark':'switchContainer'">
         <mat-icon>sunny</mat-icon>
-        <mat-slide-toggle (change)="toggle($event)" [(ngModel)]="themeService.darktheme" class="toggle"></mat-slide-toggle>
+        <mat-slide-toggle (change)="toggle($event)" [(ngModel)]="themeService.darktheme"
+          class="toggle"></mat-slide-toggle>
         <mat-icon>dark_mode</mat-icon>
       </div>
     </div>
@@ -80,7 +99,8 @@
     </div>
     <div [class]="themeService.darktheme?'footerBlack':'footer'">
       <div class="footerIconsContainer">
-        <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="goToExternalURL('https://instagram.com/creacionesmaya1111?igshid=YmM0MjE2YWMzOA==')">
+        <button mat-icon-button aria-label="Example icon-button with menu icon"
+          (click)="goToExternalURL('https://instagram.com/creacionesmaya1111?igshid=YmM0MjE2YWMzOA==')">
           <img src="./assets/instagram.svg" alt="insta" class="instagramLogo">
         </button>
         <button mat-icon-button aria-label="Example icon-button with menu icon" routerLink="/contactanos">
@@ -94,10 +114,10 @@
             <div class="linkClassFooter" routerLink="/inicio">
               <p class="itemText2">Inicio</p>
             </div>
-            <div class="linkClassFooter" >
+            <div class="linkClassFooter">
               <p class="itemText2">Nosotros</p>
             </div>
-            <div class="linkClassFooter" >
+            <div class="linkClassFooter">
               <p class="itemText2" routerLink="/contactanos">Contáctanos</p>
             </div>
           </div>
@@ -106,7 +126,7 @@
               <mat-icon class="footerIcon itemText">shopping_cart</mat-icon>
               <p class="itemText2">Carrito</p>
             </div>
-            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData"  routerLink="/login">
+            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData" routerLink="/login">
               <mat-icon class="footerIcon itemText">person</mat-icon>
               <p class="itemText2">Login</p>
             </div>
@@ -118,7 +138,8 @@
         </div>
       </div>
       <div [class]="windowWidth>= 900?'footerClass3':'footerClass4'">
-        <img src="./assets/shoploc.png" class="footerIcon" alt="logo3"><p class="itemText2">Distrito Capital - Miranda - Venezuela</p>
+        <img src="./assets/shoploc.png" class="footerIcon" alt="logo3">
+        <p class="itemText2">Distrito Capital - Miranda - Venezuela</p>
       </div>
       <div class="footerClass4">
         <p>©2023 Reservados todos los derechos</p>

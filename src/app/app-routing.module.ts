@@ -12,7 +12,7 @@ import { VerifyComponent } from './pages/verify/verify.component';
 import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
 import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacionCode.component'
 import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
-
+import { PerfilComponent } from './pages/perfil/perfil.component'
 const routes: Routes = [
   {
     path: '',
@@ -66,7 +66,11 @@ const routes: Routes = [
   {
     path: 'recuperacion/key/:email/:key',
     component: RecuperacionKeyComponent,
-  }
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
+  },
 ];
 
 @NgModule({

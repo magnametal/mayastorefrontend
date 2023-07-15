@@ -43,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
 import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
+import { PerfilComponent } from './pages/perfil/perfil.component'
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKe
     RecuperacionComponent,
     RecuperacionCodeComponent,
     RecuperacionKeyComponent,
+    PerfilComponent,
     VerifyComponent,
     AdminComponent
   ],
