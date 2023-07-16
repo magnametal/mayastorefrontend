@@ -20,7 +20,7 @@
             <div class="carritoItem" *ngFor="let itemCar of carrito; let i = index;">
                 <div class="carritoItemTitle">
                     <div class="carritoAvatarInfo">
-                        <img class="productPicCarrito" [routerLink]="['/producto', itemCar.id]" [src]="itemCar.images[0]" alt="">
+                        <img class="productPicCarrito" [routerLink]="['/producto', itemCar._id]" [src]="itemCar.images[0]" alt="">
                         <div class="carritoDataInfo">
                             <h4>{{ itemCar.title }}</h4>
                             <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>

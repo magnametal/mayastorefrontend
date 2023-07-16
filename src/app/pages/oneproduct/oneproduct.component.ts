@@ -49,6 +49,7 @@ export class OneProductComponent {
           this.product = resp.product;
           this.recommended = resp.recommended;
         }else{
+          this.router.navigate(['**']);
           this.errorsService.catchErrorCodes(resp.code)
         }
         this.loaderService.setLoading(false);

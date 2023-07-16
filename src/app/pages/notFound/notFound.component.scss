@@ -1,0 +1,23 @@
+.notFoundClassContent{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.notFoundClassSubcontent{
+    margin-top: 90px;
+    margin-bottom: 90px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #B489D2;
+}
+
+.iconMaterial{
+    scale: 5;
+    margin: 70px;
+}

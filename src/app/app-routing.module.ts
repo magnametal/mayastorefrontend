@@ -14,6 +14,8 @@ import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacion
 import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AboutComponent } from './pages/about/about.component';
+import { notFoundComponent } from './pages/notFound/notFound.component';
+
 
 const routes: Routes = [
   {
@@ -77,6 +79,7 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent,
   },
+  { path: '**', pathMatch: 'full', component: notFoundComponent },
 ];
 
 @NgModule({

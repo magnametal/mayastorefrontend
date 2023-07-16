@@ -16,6 +16,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacionCode.component'
+import { notFoundComponent } from './pages/notFound/notFound.component';
+
 
 
 // Componentes
@@ -66,6 +68,7 @@ import { AboutComponent } from './pages/about/about.component';
     RecuperacionComponent,
     RecuperacionCodeComponent,
     RecuperacionKeyComponent,
+    notFoundComponent,
     AboutComponent,
     PerfilComponent,
     VerifyComponent,
