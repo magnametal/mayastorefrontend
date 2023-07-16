@@ -31,42 +31,42 @@ export class PerfilComponent {
     private route: ActivatedRoute,
   ) { }
 
-  key:any = '';
-  password:any = '';
-  password2:any = '';
-  email:any = '';
-  country:any = '';
-  phone:any = '';
-  hide0:any = true;
-  hide1:any = true;
-  hide2:any = true;
-  code:any = '';
-  oldpassword:any = '';
-  countries:any[]=[];
+  key: any = '';
+  password: any = '';
+  password2: any = '';
+  email: any = '';
+  country: any = '';
+  phone: any = '';
+  hide0: any = true;
+  hide1: any = true;
+  hide2: any = true;
+  code: any = '';
+  oldpassword: any = '';
+  countries: any[] = [];
   ngOnInit() {
     this.loaderService.setLoading(false);
   }
   ngAfterContentInit() {
     if (!this.sesionService.userData) {
       this.router.navigate(['inicio']);
-    }else{
+    } else {
       this.getCountries();
       this.phone = this.sesionService.userData.phone;
       this.country = this.sesionService.userData.country;
       console.log(this.sesionService.userData.code);
-      
+
       this.code = this.sesionService.userData.code;
     }
   }
-  getCountries(){
+  getCountries() {
     this.api.apiGetRequest(`country/all`).subscribe({
       next: (resp: any) => {
         if (resp.ok) {
           this.locastorageservice.saveData('countries', JSON.stringify(resp.countries));
           console.log(resp.countries);
-          
+
           this.countries = resp.countries;
-        }else{
+        } else {
           this.errorsService.catchErrorCodes(resp.code)
         }
       },
@@ -76,20 +76,24 @@ export class PerfilComponent {
       },
     });
   }
-  cambiarClave(){
-    if (this.key!='' && this.password!='' && this.password2!='') {
-      if (this.password==this.password2) {
+  cambiarClave() {
+    if (this.oldpassword != '' && this.password != '') {
+      if (this.password == this.password2) {
         this.loaderService.setLoading(true);
-        this.api.apiPostRequest(`login/recuperacion/key`, {
-          password: this.password,
-          key: this.key,
-          email: this.email,
+        this.api.apiPutRequest(`usuarios/perfil/password/${this.sesionService.userData.id}`, {
+          oldpassword: this.oldpassword,
+          password: this.password
         }).subscribe({
-          next: (resp: any) => {
+          next: async (resp: any) => {
             if (resp.ok) {
-              this.alertService.alertMessage('Haz cambiado tu clave exitosamente, por favor ingresa tus datos para iniciar sesión.', 'Recuperación exitosa');
-              this.router.navigate(['login']);
-            }else{
+              this.alertService.alertMessage('Campos actualizados.', 'Acción exitosa');
+              this.locastorageservice.saveData('token', resp.token);
+              this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
+              this.sesionService.checkLoguedInfo();
+              this.password = '';
+              this.password2 = '';
+              this.oldpassword = '';
+            } else {
               this.errorsService.catchErrorCodes(resp.code)
             }
             this.loaderService.setLoading(false);
@@ -101,8 +105,43 @@ export class PerfilComponent {
           },
         });
       }else{
-        this.alertService.alertMessage('Las claves no coinciden porfavor verifica.', 'Campos incorrectos');
+        this.alertService.alertMessage('Claves no coinciden.', 'Campos no válidos');
       }
+    } else {
+      this.alertService.alertMessage('No pueden haber campos vacíos.', 'Campos incorrectos');
+    }
+  }
+  cambiarTelefono() {
+    if (this.country != '' && this.phone != '') {
+      const index = this.countries.findIndex((pais:any) => '+'+pais.phonecode==this.code);
+      if (index != -1) {
+        this.loaderService.setLoading(true);
+        this.api.apiPutRequest(`usuarios/perfil/phone/${this.sesionService.userData.id}`, {
+          phone: this.phone,
+          country: this.countries[index].name,
+          code: "+"+this.countries[index].phonecode
+        }).subscribe({
+          next: async (resp: any) => {
+            if (resp.ok) {
+              this.alertService.alertMessage('Campos actualizados.', 'Acción exitosa');
+              await this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
+              this.sesionService.checkLoguedInfo();
+            } else {
+              this.errorsService.catchErrorCodes(resp.code)
+            }
+            this.loaderService.setLoading(false);
+          },
+          error: (e: any) => {
+            this.alertService.alertMessage('Error de servidor', 'Error');
+            console.log(e);
+            this.loaderService.setLoading(false);
+          },
+        });
+      }else{
+        this.alertService.alertMessage('País no encontrado', 'Campos no válidos');
+      }
+    } else {
+      this.alertService.alertMessage('No pueden haber campos vacíos.', 'Campos incorrectos');
     }
   }
 }

@@ -18,6 +18,11 @@
                 <h4>{{prod.price}}$</h4>
             </div>
         </div>
+        <div class="paginator">
+            <mat-paginator [class]="themeService.darktheme?'paginationThemeDark':'paginationTheme'" [length]="totalPages" [pageSize]="12"
+                (page)="pageEvent = $event; onPaginateChange($event)">
+            </mat-paginator>
+        </div>
     </div>
     <div class="categoryItemListSubcat" *ngIf="!onlycats">
         <div *ngFor="let subcat of subcategories;" class="subcategoryforMain">
@@ -33,7 +38,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>

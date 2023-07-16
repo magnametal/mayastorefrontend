@@ -29,7 +29,7 @@
                     <p>{{ usr.status==1?'Activo':'Deshabilitado'}}</p>
                     <p>{{ usr.code+usr.phone }}</p>
                 </div>
-                <div class="secondContentList">
+                <div class="secondContentList" *ngIf="usr.id!='649b7d0fa44127e275b6801b' && usr.id!='64b1dac9b2866a6e89820076'">
                     <button *ngIf="usr.role=='ADMIN_ROLE'" mat-icon-button class="adminIcon" (click)="switchAdmin(usr)">
                         <mat-icon>workspace_premium</mat-icon>
                     </button>
@@ -45,6 +45,12 @@
                     <button *ngIf="usr.status==1" mat-icon-button class="banButton" (click)="switchBan(usr, 2)">
                         <mat-icon>block</mat-icon>
                     </button>
+                </div>
+                <div class="secondContentList" *ngIf="usr.id=='649b7d0fa44127e275b6801b' || usr.id=='64b1dac9b2866a6e89820076'">
+                    <button mat-icon-button class="adminIcon">
+                        <mat-icon>workspace_premium</mat-icon>
+                    </button>
+                    <p class="permaAdminText">Admin Permanente</p>
                 </div>
             </div>
         </div>

@@ -25,6 +25,9 @@ export class CategoriaComponent {
   subcategories: any[]=[];
   onlycats:any = true;
   products:any[]=[];
+  totalPages:any;
+  pageEvent:any;
+  page=0;
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params.subcategory=='0') {
@@ -34,15 +37,16 @@ export class CategoriaComponent {
       }
     });
   }
-  getProductsBycategory(cat:any){
+  getProductsBycategory(cat:any, page?:any){
     this.loaderService.setLoading(true);
-    this.api.apiGetRequest(`productos/categoria/${cat}`).subscribe({
+    this.api.apiGetRequest(`productos/categoria/${cat}`, page?page:this.page*12).subscribe({
       next: (resp: any) => {
         if (resp.ok) {
           if (!resp.onlycats) {
             this.subcategories = resp.subcategories;
           }else{
             this.products = resp.products;
+            this.totalPages = resp.total;
           }
           this.category = resp.category;
           this.subcategory = false;
@@ -59,12 +63,23 @@ export class CategoriaComponent {
       },
     });
   }
-  getProductsBySubcategory(cat:any, subcat:any){
+  onPaginateChange(e:any){
+    this.products = [];
+    const index = e.pageIndex*12;
+    this.page = e.pageIndex;
+    if (this.onlycats) {
+      this.getProductsBySubcategory(this.category.id, this.subcategory.id, index);
+    }else{
+      this.getProductsBycategory(this.category.id, index);
+    }
+  }
+  getProductsBySubcategory(cat:any, subcat:any, page?:any){
     this.loaderService.setLoading(true);
-    this.api.apiGetRequest(`productos/subcategoria/${cat}/${subcat}`).subscribe({
+    this.api.apiGetRequest(`productos/subcategoria/${cat}/${subcat}`, page?page:this.page*12).subscribe({
       next: (resp: any) => {
         if (resp.ok) {
           this.products = resp.products;
+          this.totalPages = resp.total;
           this.subcategory = resp.subcategory;
           this.category = resp.category;
           this.onlycats = true;

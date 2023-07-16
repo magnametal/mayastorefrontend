@@ -53,7 +53,7 @@ export class HomeComponent {
     if (this.query!='') {
       this.mode = 'search';
       this.loadingSerach = true;
-      this.api.apiGetRequest(`productos/buscar/${this.query}`, page?page:this.page*10).subscribe({
+      this.api.apiGetRequest(`productos/buscar/${this.query}`, page?page:this.page*12).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
             if (resp.products.length==0) {

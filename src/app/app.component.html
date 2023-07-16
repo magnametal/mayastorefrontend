@@ -1,7 +1,8 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true" autosize>
   <mat-drawer #drawer [class]="themeService.darktheme?'example-sidenavBlack':'example-sidenav'" mode="over">
     <div class="sidenavTitles">
-      <img src="./assets/logo_small.png" (click)="drawer.toggle()" class="menuLogoSideNav" alt="logo1" routerLink="/inicio">
+      <img src="./assets/logo_small.png" (click)="drawer.toggle()" class="menuLogoSideNav" alt="logo1"
+        routerLink="/inicio">
       <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" color="accent"
         (click)="drawer.toggle()">
         <mat-icon>close</mat-icon>
@@ -42,7 +43,7 @@
             <div
               [class]="verifySubmenuRoute(router.url, '/categoria/'+cat.id+'/'+subcat.id)+' internalSubCatDiv animate__animated animate__fadeInLeft animate__faster'"
               *ngFor="let subcat of cat.subcategories;" [routerLink]="'/categoria/'+cat.id+'/'+subcat.id"
-              [replaceUrl]="true">
+              [replaceUrl]="true" (click)="drawer.toggle()">
               <p class="itemTextSubcat">{{subcat.title}}</p>
             </div>
           </div>
@@ -50,7 +51,7 @@
         <div *ngIf="cat.subcategories.length==0; else disabledItem"
           [class]="verifyRoute(router.url, '/categoria/'+cat.id+'/0')" (click)="drawer.toggle();"
           [routerLink]="'/categoria/'+cat.id+'/0'" [replaceUrl]="true">
-          <p (click)="drawer.toggle()" [routerLink]="'/categoria/'+cat.id" [replaceUrl]="true" class="itemText">
+          <p class="itemText">
             {{cat.title}}</p>
         </div>
       </div>
@@ -126,11 +127,13 @@
               <mat-icon class="footerIcon itemText">shopping_cart</mat-icon>
               <p class="itemText2">Carrito</p>
             </div>
-            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData" routerLink="/login">
+            <div class="footerContainer linkClassFooter"
+              *ngIf="!sesionService.userData || sesionService.userData.status!=1" routerLink="/login">
               <mat-icon class="footerIcon itemText">person</mat-icon>
               <p class="itemText2">Login</p>
             </div>
-            <div class="footerContainer linkClassFooter" *ngIf="!sesionService.userData" routerLink="/registro">
+            <div class="footerContainer linkClassFooter"
+              *ngIf="!sesionService.userData || sesionService.userData.status!=1" routerLink="/registro">
               <mat-icon class="footerIcon itemText">person_add</mat-icon>
               <p class="itemText2">Registrarse</p>
             </div>

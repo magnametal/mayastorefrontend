@@ -17,7 +17,7 @@
             </select>
             <input type="text" [(ngModel)]="phone" class="inputClassProfile" placeholder="Teléfono">
         </div>
-        <button class="inputButton">Cambiar teléfono</button>
+        <button class="inputButton" (click)="cambiarTelefono()">Cambiar teléfono</button>
     </div>
     <div [class]="themeService.darktheme?'divContentProfileDark':'divContentProfile'">
         <h2 class="textColorsRecup">Cambiar mi clave</h2>
@@ -39,7 +39,7 @@
             <mat-icon matSuffix class="eyeInput" (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' :
                 'visibility'}}</mat-icon>
         </div>
-        <button class="inputButton">Cambiar clave</button>
+        <button class="inputButton" (click)="cambiarClave()">Cambiar clave</button>
     </div>
 </div>
 <div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">
