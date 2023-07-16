@@ -25,7 +25,7 @@
             <div class="UserMenuItem" *ngFor="let usr of users;">
                 <img class="ceroContentList" [src]="usr.img" [alt]="'profile_'+usr.id">
                 <div class="firstContentList">
-                    <h4>{{usr.email}}</h4>
+                    <p class="emailVentasText">{{usr.email}}</p>
                     <p>{{ usr.status==1?'Activo':'Deshabilitado'}}</p>
                     <p>{{ usr.code+usr.phone }}</p>
                 </div>
@@ -177,12 +177,12 @@
                 <h4>Lista de ventas</h4>
             </div>
             <div class="SalesMenuItem" *ngFor="let sale of sales;">
-                <div class="firstContentList" (click)="dialogSale(sale)">
-                    <h4>{{ sale.user.email }}</h4>
+                <div class="otherFirstContentList" (click)="dialogSale(sale)">
+                    <p class="emailVentasText">{{ sale.user.email }}</p>
                     <p>Productos: {{ sale.items }}</p>
                     <p>{{ sale.total.toFixed(2) }}$</p>
                 </div>
-                <div class="secondContentList" (click)="dialogSale(sale)">
+                <div class="secondOtherContentList" (click)="dialogSale(sale)">
                     {{ getTime(sale.created_at) }}
                 </div>
             </div>

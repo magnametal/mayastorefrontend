@@ -27,5 +27,6 @@ export class SessionService {
     this.userData=null;
     await this.localstorageService.removeData('token');    
     await this.localstorageService.removeData('userData');  
+    await this.localstorageService.removeData('carrito');  
   }
 }

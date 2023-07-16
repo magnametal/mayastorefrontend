@@ -141,6 +141,15 @@
     flex-direction: column;
 }
 
+.otherFirstContentList{
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    flex-direction: column; 
+}
+
 .secondContentList {
     width: 50%;
     display: flex;
@@ -148,7 +157,13 @@
     justify-content: flex-end;
     padding: 5px;
 }
-
+.secondOtherContentList{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px; 
+}
 
 .banButton {
     color: red;
@@ -209,32 +224,6 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 680px) {
-    .adminMenuContainer{
-        width: 97%;
-        margin-top: 0;
-        border: none;
-    }
-    .ProductsMenuItem{
-        flex-direction: column;
-    }
-    .UserMenuItem{
-        flex-direction: column;
-    }
-    .firstContentList{
-        width: 96%;
-        align-items: center;
-    }
-    .secondContentList {
-        width: 100%;
-        justify-content: center;
-
-    }
-    .actionsBarProducts{
-        flex-direction: column;
-        justify-content: center;
-    }
-}
 
 .userIcon{
     color: #d5d5d5;
@@ -364,27 +353,6 @@
     cursor: pointer;
 }
 
-
-@media only screen and (max-width: 680px) {
-    .actionsBarNoneProducts{
-        flex-direction: column;
-
-    }
-    .actionsBarNoneProductsBlack{
-        flex-direction: column;
-    }
-    .SearchBarMain{
-        flex-direction: column;
-    }
-    .queryButtonDiv{
-        width: 92%;
-    }
-    .inputQuerySearch{
-        width: 86%;
-    }
-}
-
-
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #fff;
     opacity: 1; /* Firefox */
@@ -425,4 +393,63 @@
     margin: 2px;
     border-radius: 7px;
     cursor: pointer;
+}
+
+.emailVentasText{
+    font-size: xx-small;
+}
+
+
+@media only screen and (max-width: 680px) {
+    .adminMenuContainer{
+        width: 97%;
+        margin-top: 0;
+        border: none;
+    }
+    .ProductsMenuItem{
+        flex-direction: column;
+    }
+    .UserMenuItem{
+        flex-direction: column;
+    }
+    .firstContentList{
+        width: 96%;
+        align-items: center;
+    }
+    .otherFirstContentList{
+        width: 96%;
+        align-items: center;
+    }
+    .secondOtherContentList{
+        width: 96%;
+        justify-content: center;
+    }
+    .secondContentList {
+        width: 100%;
+        justify-content: center;
+    }
+    .actionsBarProducts{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .actionsBarNoneProducts{
+        flex-direction: column;
+
+    }
+    .actionsBarNoneProductsBlack{
+        flex-direction: column;
+    }
+    .SearchBarMain{
+        flex-direction: column;
+    }
+    .queryButtonDiv{
+        width: 92%;
+    }
+    .inputQuerySearch{
+        width: 86%;
+    }
+    .SalesMenuItem{
+        width: 92%;
+        flex-direction: column;
+    }
 }
