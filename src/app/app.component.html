@@ -56,7 +56,7 @@
         </div>
       </div>
       <span class="divider"></span>
-      <div [class]="verifyRoute(router.url, '/nosotros')">
+      <div [class]="verifyRoute(router.url, '/about')" (click)="drawer.toggle()" routerLink="/about">
         <p class="itemText">Nosotros</p>
       </div>
       <div [class]="verifyRoute(router.url, '/contactanos')" (click)="drawer.toggle()" routerLink="/contactanos">
@@ -115,7 +115,7 @@
             <div class="linkClassFooter" routerLink="/inicio">
               <p class="itemText2">Inicio</p>
             </div>
-            <div class="linkClassFooter">
+            <div class="linkClassFooter" routerLink="/about">
               <p class="itemText2">Nosotros</p>
             </div>
             <div class="linkClassFooter">

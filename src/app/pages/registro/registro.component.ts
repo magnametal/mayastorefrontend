@@ -84,8 +84,6 @@ export class RegistroComponent {
             code: "+"+this.countries[index].phonecode
           }).subscribe({
             next: (resp: any) => {
-              console.log(resp);
-              
               if (resp.ok) {
                 this.sesionService.userData = {
                   email: resp.email,

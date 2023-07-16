@@ -1,0 +1,60 @@
+
+<h1 mat-dialog-title>
+    {{ user.email }}
+</h1>
+<mat-dialog-content mat-dialog-content>
+    <div class="mainContentCarrito">
+        <div class="carritoContainer">
+            <div class="InforUserContainer">
+                <img class="imageAvatarUser" [src]="user.img" alt="">
+                <div class="divContentInfoDialog">
+                    <p><strong>{{ user.email}}</strong></p>
+                    <p>{{user.code}} {{user.phone}}</p>
+                    <p>{{user.country}}</p>
+                </div>
+            </div>
+            <div class="timeDialog">
+                {{ getTime(created_at) }}
+            </div>
+            <span class="divider"></span>
+            <div class="carritoItem" *ngFor="let itemCar of carrito; let i = index;">
+                <div class="carritoItemTitle">
+                    <div class="carritoAvatarInfo">
+                        <img class="productPicCarrito" [routerLink]="['/producto', itemCar.id]" [src]="itemCar.images[0]" alt="">
+                        <div class="carritoDataInfo">
+                            <h4>{{ itemCar.title }}</h4>
+                            <p>{{ (itemCar.price).toFixed(2) }}$ c/u</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardProductCarrito">
+                    <div class="itemContent" *ngFor="let car of itemCar.car;">
+                        <p>Cantidad: {{ car.quantity }}</p>
+                        <div *ngIf="car.size">
+                            Talla: {{car.size.title}}
+                        </div>
+                        <p *ngIf="car.color">Color: </p>
+                        <div *ngIf="car.color" class="colorsContentRail">
+                            <span class="pickerItemSpan" [style]="'background-color: '+car.color"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemPrice">
+                    <h3>
+                        {{(getSubfinalPrice(itemCar)).toFixed(2) }}$
+                    </h3> 
+                </div>
+                <span class="divider"></span>
+            </div>
+            <div class="totalPriceContainer">
+                <div class="totalPrice">
+                    <h3>Total</h3>
+                    <h3>{{getFinalPrice().toFixed(2)}}$</h3>
+                </div>
+            </div>
+        </div>
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Ok</button>
+</mat-dialog-actions>

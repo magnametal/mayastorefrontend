@@ -12,7 +12,9 @@ import { VerifyComponent } from './pages/verify/verify.component';
 import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
 import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacionCode.component'
 import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
-import { PerfilComponent } from './pages/perfil/perfil.component'
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { AboutComponent } from './pages/about/about.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -70,6 +72,10 @@ const routes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
 ];
 

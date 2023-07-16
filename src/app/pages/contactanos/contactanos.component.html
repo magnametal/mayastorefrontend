@@ -13,7 +13,7 @@
 
         <textarea style="min-height: 250px;" type="text" [(ngModel)]="message" class="inputClassDialogProductArea" placeholder="Cuéntanos en que podemos servirte...">
         </textarea>
-        <button class="inputButtonEnter" >Enviar</button>
+        <button class="inputButtonEnter" (click)="sendForm()" >Enviar</button>
     </div>
 </div>
 <div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">

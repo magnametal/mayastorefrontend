@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { ThemeServiceService } from 'src/app/services/theme-service.service';
 import { CarritoServiceService } from 'src/app/services/carrito-service.service';
@@ -15,19 +14,21 @@ import { ProductoDialogContent } from '../../components/producto-dialog-content/
 import { AlertContent } from '../../components/alert-dialog-content/alert-dialog-content';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ErrorsService } from 'src/app/services/errors.service';
+import { SalesDialogContent } from '../../components/sales-dialog-content/sales-dialog-content';
+import * as moment from 'moment';
 
 moment.locale('es');
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
   constructor(public api: ApiService, private location: Location, public themeService: ThemeServiceService, public carritoService: CarritoServiceService, public loaderService: LoaderService, private alertService: AlertServiceService, private sessionService: SessionService, public router: Router, private dialog: MatDialog, private categoriesService: CategoriesService, private errorsService: ErrorsService) { }
   activeRoute: any = 'users';
   users: any[] = [];
+  sales:any[] = [];
   products: any[] = [];
   categories: any[] = [];
   catsOrderActive:any = false;
@@ -48,6 +49,24 @@ export class AdminComponent {
   }
   ngAfterContentInit() {
 
+  }
+  getSales() {
+    this.loaderService.setLoading(true);
+    this.api.apiGetRequest(`ventas`).subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          this.sales = resp.sales;
+        }else{
+          this.errorsService.catchErrorCodes(resp.code)
+        }
+        this.loaderService.setLoading(false);
+      },
+      error: (e: any) => {
+        this.alertService.alertMessage('Error de servidor', 'Error');
+        console.log(e);
+        this.loaderService.setLoading(false);
+      },
+    });
   }
   getUsers() {
     this.loaderService.setLoading(true);
@@ -190,6 +209,20 @@ export class AdminComponent {
       }
     });
   }
+  dialogSale(sale:any) {
+    const dialogRef = this.dialog.open(SalesDialogContent, {
+      data: {
+        sale: sale
+      },
+      width: '70%',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log("here");
+        
+      }
+    });
+  }
   getPictureRoute(item: any) {
     return environment.URL_IMAGEN + item;
   }
@@ -218,7 +251,7 @@ export class AdminComponent {
       this.getCategories()
     }
     if (ruta == 'sales') {
-      this.getUsers()
+      this.getSales()
     }
   }
   array_move(arr: any, old_index: any, new_index: any) {
@@ -509,5 +542,8 @@ export class AdminComponent {
         this.loaderService.setLoading(false);
       },
     });
+  }
+  getTime(time:any){
+    return moment(time).fromNow()
   }
 }

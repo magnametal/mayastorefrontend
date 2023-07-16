@@ -172,6 +172,21 @@
                 <button [class]="themeService.darktheme?'actionNewProdBlack':'actionNewProd'" (click)="saveCatsOrder();">Guardar Orden</button>
             </div>
         </div>
+        <div class="contentClass" *ngIf="activeRoute=='sales'">
+            <div class="actionsBarProducts">
+                <h4>Lista de ventas</h4>
+            </div>
+            <div class="SalesMenuItem" *ngFor="let sale of sales;">
+                <div class="firstContentList" (click)="dialogSale(sale)">
+                    <h4>{{ sale.user.email }}</h4>
+                    <p>Productos: {{ sale.items }}</p>
+                    <p>{{ sale.total.toFixed(2) }}$</p>
+                </div>
+                <div class="secondContentList" (click)="dialogSale(sale)">
+                    {{ getTime(sale.created_at) }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div [class]="themeService.darktheme?'loaderContainerDark':'loaderContainer'" *ngIf="loaderService.loading">

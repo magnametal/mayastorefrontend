@@ -59,7 +59,6 @@ export class LoginComponent {
               this.locastorageservice.saveData('token', resp.token);
               this.locastorageservice.saveData('userData', JSON.stringify(resp.userData));
               this.sesionService.checkLoguedInfo();
-              this.reset();
               this.router.navigate(['inicio']);
               this.loaderService.setLoading(false);
             }
@@ -67,8 +66,10 @@ export class LoginComponent {
             this.errorsService.catchErrorCodes(resp.code)
             this.loaderService.setLoading(false);
           }
+          this.reset();
         },
         error: (e: any) => {
+          this.reset();
           this.alertService.alertMessage('Datos no válidos', 'Error de verificación');
           console.log(e);
           this.loaderService.setLoading(false);

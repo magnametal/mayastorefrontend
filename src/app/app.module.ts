@@ -22,6 +22,8 @@ import { RecuperacionCodeComponent } from './pages/recuperacionCode/recuperacion
 
 import { ProductoDialogContent } from './components/producto-dialog-content/producto-dialog-content';
 import { CategoryDialogContent } from './components/category-dialog-content/category-dialog-content';
+import { SalesDialogContent } from './components/sales-dialog-content/sales-dialog-content';
+
 
 
 // Material
@@ -38,13 +40,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ColorChromeModule } from 'ngx-color/chrome'; // <color-chrome></color-chrome>
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RecuperacionComponent } from './pages/recuperacion/recuperacion.component';
 import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKey.component'
-import { PerfilComponent } from './pages/perfil/perfil.component'
-
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +61,12 @@ import { PerfilComponent } from './pages/perfil/perfil.component'
     CategoriaComponent,
     ProductoDialogContent,
     CategoryDialogContent,
+    SalesDialogContent,
     ContactanosComponent,
     RecuperacionComponent,
     RecuperacionCodeComponent,
     RecuperacionKeyComponent,
+    AboutComponent,
     PerfilComponent,
     VerifyComponent,
     AdminComponent

@@ -414,3 +414,15 @@
 .permaAdminText{
     font-size: smaller;
 }
+
+.SalesMenuItem{
+    width: 91%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border: solid 3px #B489D2;
+    margin: 2px;
+    border-radius: 7px;
+    cursor: pointer;
+}
