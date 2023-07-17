@@ -1,11 +1,28 @@
-
 <div class="editorClassContent">
+    <div class="previewFull">
+        <div style="width: 100%; background-color: #14080E;">
+            <div style="padding: 20px 10px 20px 10px;">
+                <div style="background-color: #14080E; padding: 10px 0px 10px 0px; width: 100%; text-align: center;">
+                    <img src="https://i.ibb.co/HK2cRWD/logo-big.png" alt="" style="width: 200px; height: 120px;"></div>
+                <div style="background-color: #ffffff; width: 100%;" >
+                    <quill-editor [(ngModel)]="htmlstring" theme="snow"></quill-editor>
+                </div>
+                <div
+                    style="background-color: #282828; color: #ffffff; padding: 5px 0px 0px 0px; width: 100%; text-align: center;">
+                    <a href="https://instagram.com/creacionesmaya1111?igshid=YmM0MjE2YWMzOA==" class="contA"><img
+                            src="https://i.ibb.co/Q6WBvLw/insta.png" class="imag" /></a>
+                    <p style="background-color: #14080E; padding: 10px 0px 10px 0px; font-size: 12px !important;">2023
+                        Creaciones Maya</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="editorClassSubcontent">
-        <quill-editor [(ngModel)]="htmlstring" theme="snow"></quill-editor>
     </div>
     <div class="divButtonEditor">
         <button class="inputButtonEditor">Enviar</button>
     </div>
+
     <div class="stringHTMLExit" *ngIf="htmlstring!='' && htmlstring">
         {{htmlstring}}
     </div>
