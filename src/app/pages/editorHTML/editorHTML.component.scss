@@ -1,0 +1,130 @@
+.editorClassContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  min-height: 600px;
+}
+
+.editorClassSubcontent {
+  margin-top: 10px;
+  margin-bottom: 90px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #000;
+}
+
+@media only screen and (max-width: 600px) {
+  .editorClassContent {
+    width: 97%;
+  }
+
+  .editorClassSubcontent {
+    width: 97%;
+  }
+}
+
+.iconMaterial {
+  scale: 5;
+  margin: 70px;
+}
+
+.ql-mention-list-container {
+  width: 270px;
+  border: 1px solid #F0F0F0;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 12px 0 rgba(30, 30, 30, 0.08);
+}
+
+.ql-mention-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ql-mention-list-item {
+  cursor: pointer;
+  height: 44px;
+  line-height: 44px;
+  font-size: 16px;
+  padding: 0 20px;
+  vertical-align: middle;
+}
+
+.ql-mention-list-item.selected {
+  background-color: #D3E1EB;
+  text-decoration: none;
+}
+
+.mention {
+  height: 24px;
+  width: 65px;
+  border-radius: 6px;
+  background-color: #D3E1EB;
+  padding: 3px 0;
+}
+
+.mention>span {
+  margin: 0 3px;
+}
+
+.stringHTMLExit {
+  width: 90%;
+  background-color: #616161;
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.stringHTMLExitEmpty {
+  width: 90%;
+  color: #616161;
+  padding: 10px;
+  border-radius: 10px;
+  border: dashed 3px #616161;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divButtonEditor{
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.inputButtonEditor {
+  margin-top: 20px;
+  background-color: #fff;
+  border: solid 3px;
+  border-color: #B489D2;
+  color: #B489D2;
+  border-radius: 10px;
+  min-width: 220px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.inputButtonEditor:hover {
+  background-color: #B489D2;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.inputButtonEditor:active {
+  background-color: #fff;
+  border-color: #fff;
+  color: #B489D2;
+}

@@ -1,0 +1,15 @@
+
+<div class="editorClassContent">
+    <div class="editorClassSubcontent">
+        <quill-editor [(ngModel)]="htmlstring" theme="snow"></quill-editor>
+    </div>
+    <div class="divButtonEditor">
+        <button class="inputButtonEditor">Enviar</button>
+    </div>
+    <div class="stringHTMLExit" *ngIf="htmlstring!='' && htmlstring">
+        {{htmlstring}}
+    </div>
+    <div class="stringHTMLExitEmpty" *ngIf="htmlstring=='' || !htmlstring">
+        Aquí verás tu código HTML para el correo de salida
+    </div>
+</div>

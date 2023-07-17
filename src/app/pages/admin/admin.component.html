@@ -5,6 +5,9 @@
             <div [class]="activeRoute=='products'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('products')">Productos</div>
             <div [class]="activeRoute=='categories'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('categories')">Categorías</div>
             <div [class]="activeRoute=='sales'?(themeService.darktheme?'menuButtonActiveBlack':'menuButtonActive'):(themeService.darktheme?'menuButtonBlack':'menuButton')" (click)="changeAdminRoute('sales')">Ventas</div>
+            <div class="menuButton" routerLink="/html-editor">
+                Mensajes masivos
+            </div>
         </div>
         <div class="contentClass" *ngIf="activeRoute=='users'">
             <div class="actionsBarProducts">

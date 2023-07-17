@@ -15,7 +15,7 @@ import { RecuperacionKeyComponent } from './pages/recuperacionKey/recuperacionKe
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AboutComponent } from './pages/about/about.component';
 import { notFoundComponent } from './pages/notFound/notFound.component';
-
+import { editorHTMLComponent } from './pages/editorHTML/editorHTML.component';
 
 const routes: Routes = [
   {
@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'html-editor',
+    component: editorHTMLComponent,
   },
   { path: '**', pathMatch: 'full', component: notFoundComponent },
 ];

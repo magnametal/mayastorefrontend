@@ -12,7 +12,6 @@ moment.locale('es');
 export class notFoundComponent {
   constructor(
   ) {}
-
   ngOnInit() {
   }
   ngAfterContentInit() {
