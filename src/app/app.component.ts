@@ -94,4 +94,7 @@ export class AppComponent {
   goToExternalURL(url:any){
     window.open(url, "_blank");
   }
+  goToInstagram(){
+    window.open(environment.INSTAGRAM_URL, "_blank");
+  }
 }

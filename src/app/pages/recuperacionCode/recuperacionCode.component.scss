@@ -16,7 +16,7 @@
 .inputClassNumber{
     margin-top: 30px;
     width: 8px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     height: 28px;
     border-radius: 10px;
     color: #fff;
@@ -76,8 +76,8 @@ input[type=number] {
     margin-top: 5px;
     background-color: #fff;
     border: solid 3px;
-    border-color: #B489D2;
-    color: #B489D2;
+    border-color: #5c0d0d;
+    color: #5c0d0d;
     border-radius: 10px;
     width: 220px;
     padding-left: 10px;
@@ -87,7 +87,7 @@ input[type=number] {
 }
 
 .inputButton:hover {
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     color: #fff;
     transition: 0.5s;
 }
@@ -95,7 +95,7 @@ input[type=number] {
 .inputButton:active {
     background-color: #fff;
     border-color: #fff;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 .inputButtonWait{

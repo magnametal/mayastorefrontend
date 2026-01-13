@@ -9,14 +9,14 @@
 .loginContainer {
     margin-top: 40px;
     border: solid 3px;
-    border-color: #B489D2;
+    border-color: #5c0d0d;
     border-radius: 24px;
     min-width: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 @media only screen and (max-width: 600px) {
@@ -35,7 +35,7 @@
 .inputClass {
     margin-top: 30px;
     min-width: 200px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     height: 32px;
     border-radius: 10px;
     color: #fff;
@@ -56,7 +56,7 @@
 .inputClassPhone{
     margin-top: 30px;
     width: 105px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     height: 32px;
     border-radius: 10px;
     color: #fff;
@@ -70,7 +70,7 @@
 .inputClassCode{
     margin-top: 30px;
     width: 90px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     min-height: 36px;
     border-radius: 10px;
     color: #fff;
@@ -92,8 +92,8 @@
     margin-top: 20px;
     background-color: #fff;
     border: solid 3px;
-    border-color: #B489D2;
-    color: #B489D2;
+    border-color: #5c0d0d;
+    color: #5c0d0d;
     border-radius: 10px;
     min-width: 220px;
     padding-left: 10px;
@@ -103,7 +103,7 @@
 }
 
 .inputButtonLogin:hover {
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     color: #fff;
     transition: 0.5s;
 }
@@ -111,7 +111,7 @@
 .inputButtonLogin:active {
     background-color: #fff;
     border-color: #fff;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 .linksContainer {
@@ -122,7 +122,7 @@
     font-size: x-small;
     margin-top: 20px;
     margin-bottom: 50px;
-    color: #B489D2;
+    color: #5c0d0d;
     text-decoration: none;
     outline: none;
 }
@@ -133,25 +133,25 @@
 
 a:link {
     text-decoration: none;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 
 a:visited {
     text-decoration: none;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 
 a:hover {
     text-decoration: none;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 
 a:active {
     text-decoration: none;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 input::-webkit-outer-spin-button,

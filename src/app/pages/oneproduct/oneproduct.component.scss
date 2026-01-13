@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #B489D2;
+    color: #5c0d0d;
     flex-direction: column;
     width: 100%;
 }
@@ -75,7 +75,7 @@
 .inputClassOneProduct {
     margin-top: 30px;
     width: 40px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     height: 32px;
     border-radius: 10px;
     color: #fff;
@@ -99,8 +99,8 @@
     margin-top: 20px;
     background-color: #fff;
     border: solid 3px;
-    border-color: #B489D2;
-    color: #B489D2;
+    border-color: #5c0d0d;
+    color: #5c0d0d;
     border-radius: 10px;
     width: 100%;
     padding-left: 10px;
@@ -110,7 +110,7 @@
 }
 
 .inputButtonAddcar:hover {
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     color: #fff;
     transition: 0.5s;
 }
@@ -118,7 +118,7 @@
 .inputButtonAddcar:active {
     background-color: #fff;
     border-color: #fff;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 .railproductsRecommended {
@@ -134,7 +134,7 @@
     width: auto;
     height: 235px;
     border: solid 3px;
-    border-color: #B489D2;
+    border-color: #5c0d0d;
     border-radius: 7px;
     margin: 2px;
     cursor: pointer;
@@ -145,7 +145,7 @@
     width: auto;
     height: 235px;
     border: solid 3px;
-    border-color: #B489D2;
+    border-color: #5c0d0d;
     border-radius: 7px;
     margin: 2px;
     cursor: pointer;

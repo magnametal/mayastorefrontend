@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #B489D2;
+    color: #5c0d0d;
     flex-direction: column;
 }
 
@@ -52,7 +52,7 @@
     width: 100%;
     height: 2px;
     margin: 10px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
 }
 
 .carritoItemTitle{
@@ -113,7 +113,7 @@
 
 .totalPrice{
     width: 220px;
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     border-radius: 17px;
     color: #fff;
     display: flex;
@@ -134,8 +134,8 @@
     margin-top: 20px;
     background-color: #fff;
     border: solid 3px;
-    border-color: #B489D2;
-    color: #B489D2;
+    border-color: #5c0d0d;
+    color: #5c0d0d;
     border-radius: 17px;
     min-width: 220px;
     padding-left: 10px;
@@ -146,7 +146,7 @@
 }
 
 .inputButtonCarrito:hover {
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     color: #fff;
     transition: 0.5s;
 }
@@ -154,7 +154,7 @@
 .inputButtonCarrito:active {
     background-color: #fff;
     border-color: #fff;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 
@@ -163,7 +163,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    color: #B489D2;
+    color: #5c0d0d;
 }
 
 .colorsContentRail {
@@ -185,7 +185,7 @@
 }
 
 .InforUserContainer{
-    background-color: #B489D2;
+    background-color: #5c0d0d;
     width: 100%;
     padding: 10px;
     display: flex;
@@ -212,7 +212,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #B489D2;
+    color: #5c0d0d;
     margin: 10px;
 }
 @media only screen and (max-width: 480px) {
